@@ -1,0 +1,15 @@
+.ds-chip {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  font: 400 11px/1 var(--f-ui); letter-spacing: .4px; text-transform: uppercase; white-space: nowrap;
+  color: var(--text-2); background: var(--brand-tag-bg);
+  padding: var(--space-1) var(--space-2); border-radius: var(--r-pill); border: 1px solid transparent;
+}
+.ds-chip--outline { background: transparent; color: var(--text-3); border-color: var(--border-mid); }
+/* interactive chip (suggested prompts): sentence case, readable size, 44px-friendly target */
+.ds-chip--action {
+  text-transform: none; letter-spacing: 0; font: var(--t-ui-md); padding: var(--space-2) var(--space-3);
+  background: transparent; color: var(--text-2); border-color: var(--border-mid); cursor: pointer;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.ds-chip--action:hover:not(:disabled) { color: var(--text); border-color: var(--border-str); background: var(--bg-muted); }
+.ds-chip--action:disabled { opacity: .5; cursor: not-allowed; }

@@ -1,0 +1,2 @@
+.ds-callout { background: var(--surface-feature); border-left: 3px solid var(--border-str); border-radius: 0 var(--r-md) var(--r-md) 0; padding: var(--space-6); margin: 0; font: 400 16px/1.4 var(--f-body); color: var(--text); }
+.ds-callout em { color: var(--text-2); }

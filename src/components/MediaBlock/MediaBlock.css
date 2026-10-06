@@ -1,0 +1,5 @@
+.ds-media { margin: 0; }
+.ds-media__frame { overflow: hidden; border-radius: var(--r-md); background: var(--bg-muted); border: 1px solid var(--border); aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; }
+.ds-media__frame img, .ds-media__frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ds-media__placeholder { font: var(--t-eyebrow); letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); }
+.ds-media figcaption { font: 400 .8125rem/1.4 var(--f-ui); color: var(--text-3); margin-top: var(--space-2); }

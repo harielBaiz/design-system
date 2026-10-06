@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+Two weights only: Regular 400 and Semibold 600. **General Sans** for display and UI, **Lora** for running text, **DM Mono** for eyebrows and token names.
+
+export const Specimen = ({ token, sample, note }) => (
+  <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 24, alignItems: 'baseline', padding: '14px 0', borderBottom: '1px solid var(--border)' }}>
+    <div><code style={{ fontSize: 12 }}>{token}</code><div style={{ fontSize: 11, color: 'var(--text-3)' }}>{note}</div></div>
+    <div style={{ font: `var(${token})`, color: 'var(--text)' }}>{sample}</div>
+  </div>
+);
+
+<Specimen token="--t-display-2xl" note="600 72/80" sample="Design systems" />
+<Specimen token="--t-display-xl" note="600 56/64" sample="Design systems" />
+<Specimen token="--t-display-lg" note="600 40/48" sample="Design systems" />
+<Specimen token="--t-heading-xl" note="600 32/40" sample="Heading extra large" />
+<Specimen token="--t-heading-lg" note="600 24/32" sample="Heading large" />
+<Specimen token="--t-heading-md" note="600 20/28" sample="Heading medium" />
+<Specimen token="--t-heading-sm" note="600 18/26" sample="Heading small" />
+<Specimen token="--t-body-lg" note="Lora 400 18/30" sample="Body large: the quick brown fox jumps over the lazy dog." />
+<Specimen token="--t-body-md" note="Lora 400 16/26" sample="Body medium: the quick brown fox jumps over the lazy dog." />
+<Specimen token="--t-ui-lg" note="400 16/24" sample="UI large: field text, descriptions" />
+<Specimen token="--t-ui-md" note="400 14/20" sample="UI medium: compact field text" />
+<Specimen token="--t-label-lg" note="600 16/24" sample="Label large" />
+<Specimen token="--t-label-md" note="600 14/20" sample="Label medium" />
+<Specimen token="--t-label-sm" note="600 12/16" sample="Label small" />
+<Specimen token="--t-caption" note="400 12/16" sample="Caption: helper and validation text" />
+<Specimen token="--t-nav" note="400 14/20" sample="Nav link" />
+<Specimen token="--t-eyebrow" note="DM Mono 400 11/16 +upper, .1em" sample="EYEBROW LABEL" />

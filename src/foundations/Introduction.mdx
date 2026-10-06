@@ -1,0 +1,27 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Introduction" />
+
+# Bort design system
+
+React components and design tokens, ported from the portfolio and extended for the AI agent side project.
+
+## Principles
+
+- **Neutral UI, status colour only.** Interactive emphasis comes from a dark/light flip (`--brand`), not a hue.
+- **Tokens in three layers.** Primitives (`--n-500`) → semantic (`--text-3`) → component. Components only read semantic tokens.
+- **Two modes.** Light by default, `[data-theme="dark"]`. Use the toolbar's Theme switch to preview both. A third, **Arcade**, shows how the agent's retro look is just a re-mapping of the same semantic tokens.
+- **Accessible by default.** Visible focus ring, labelled controls, status never conveyed by colour alone.
+
+## Documentation template
+
+Every component page follows the same structure: intro → usage (when / when not / best practices) → variants → examples → accessibility → API → tokens used. `Components/Input` is the reference page.
+
+## Using it
+
+```tsx
+import { Input, Button, ChatComposer } from 'design-system';
+// tokens + base CSS are imported by the package entry
+```
+
+Set `data-theme="dark"` (or `"arcade"`) on `<html>` to switch mode.

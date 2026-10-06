@@ -1,0 +1,15 @@
+/* Minimal reset + focus style for every component. Imported once by consumers. */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font-family: var(--f-ui); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+:where(a, button, [role="button"], [tabindex]:not([tabindex="-1"]), summary):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

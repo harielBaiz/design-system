@@ -1,0 +1,157 @@
+import { Meta, Canvas, Controls, Story, Primary } from '@storybook/addon-docs/blocks';
+import * as InputStories from './Input.stories';
+
+<Meta of={InputStories} />
+
+# Input
+
+Text field for entering short or long-form values.
+
+<Primary />
+<Controls of={InputStories.Default} />
+
+## Usage
+
+Documented in a fixed order: guidance first, then variants, examples, accessibility, API.
+
+### When to use
+
+- You can't reasonably predict the answer and it might vary a lot (a name, a message, a question for the AI agent).
+- Typing is faster than choosing from a list.
+- People will want to paste a value.
+
+### When not to use
+
+- The user picks from a known set of options. Use Select, Radio or Checkbox instead.
+
+### Best practices
+
+- Always give the field a **visible label**. A placeholder disappears as soon as someone types, so it can't be the label. Search fields are the only exception, and only with a search icon and an accessible name.
+- Put formats and examples in the **description** so they stay visible after typing. Use it only when it clarifies something.
+- Keep labels short.
+- Match `type` to the content (`email`, `tel`, `number`, `url`). Mobile keyboards adapt to it.
+- Show validation **after interaction** (on blur or submit), never on first render. See *Validate on blur* below.
+- Keep messages short, say what to do, and never rely on colour alone. Every message carries an icon.
+- Show a length counter only when there is a real limit.
+- Prefer one message at a time. An error replaces the helper text rather than adding a second line.
+
+## Variants
+
+### Sizes
+
+Five sizes on the shared control scale, so an Input lines up with a Button of the same size.
+
+Touch targets: Material recommends 48px, so `lg` is the touch-first size. Treat `xs` and `sm` as a **density option** for toolbars and tables, and don't apply them by default. If you offer a dense mode, make the control that switches it at least 48px.
+
+| Size | Height | Use |
+|---|---|---|
+| `xs` | 28 | Dense toolbars, table filters |
+| `sm` | 32 | Compact forms |
+| `md` | 40 | Default |
+| `lg` | 48 | Prominent forms, mobile |
+| `xl` | 56 | Hero / primary prompt (AI agent) |
+
+<Canvas of={InputStories.Sizes} />
+
+### Types
+
+`text`, `password`, `email`, `number`, `tel`, `url`, `search`, `date`, `time`, `file`, `color`, and `textarea` (renders a `<textarea>`).
+
+<Canvas of={InputStories.Types} />
+
+### States
+
+<Canvas of={InputStories.Default} />
+
+**Disabled** removes the field from the tab order and dims it. **Read-only** stays focusable and selectable (dashed border), good for values users should copy but not edit.
+
+<Canvas of={InputStories.Disabled} />
+<Canvas of={InputStories.ReadOnly} />
+
+### Validation
+
+Pass `messages`. The most severe message sets the border colour (`error` > `warning` > `success` > `info`). `error` also sets `aria-invalid` and announces itself with `role="alert"`.
+
+<Canvas of={InputStories.ValidationStates} />
+
+## Examples
+
+### Description and required
+
+<Canvas of={InputStories.WithDescription} />
+<Canvas of={InputStories.Required} />
+
+### Validate on blur
+
+<Canvas of={InputStories.ValidateOnBlur} />
+
+### Search
+
+`type="search"` adds the search icon automatically and a clear button that appears only while there is text. The native clear X is hidden so it looks the same in every browser.
+
+<Canvas of={InputStories.Search} />
+
+### Prefix and suffix
+
+Use `prefixText` / `suffixText` for symbols and units (`$`, `kg`, `@company.com`). Add `prefixLabel` / `suffixLabel` when the symbol alone is ambiguous: screen readers hear "US dollars" instead of "$".
+
+<Canvas of={InputStories.PrefixAndSuffix} />
+
+### Error replaces helper text
+
+Supporting text (`description`) sits under the field. When `messages` appear they **replace** it on screen, so the layout doesn't shift. The description stays in the DOM for assistive tech and is read before the message. Use `reserveMessageSpace` when messages appear later and you want to avoid any jump.
+
+<Canvas of={InputStories.ErrorReplacesHelperText} />
+
+### Icons
+
+<Canvas of={InputStories.WithIcons} />
+
+### Password
+
+<Canvas of={InputStories.PasswordToggle} />
+
+### Length validation
+
+`validate={{ min, max, warnAt }}` sets the native `minlength` / `maxlength` and shows a live counter. With a maximum it reads `12/40` and turns warning at `warnAt` and error at `max`. With a minimum it adds how many characters are still needed.
+
+<Canvas of={InputStories.LengthValidation} />
+<Canvas of={InputStories.LengthRange} />
+
+### Placeholder is not a label
+
+<Canvas of={InputStories.PlaceholderIsNotALabel} />
+
+### Textarea
+
+<Canvas of={InputStories.Textarea} />
+
+## Accessibility
+
+- The `<label>` is tied to the control through `htmlFor`/`id` (an id is generated if you don't pass one).
+- `required` sets the native attribute and `aria-required`.
+- `aria-describedby` links the description, validation messages and length counter to the control.
+- `aria-invalid` is set whenever an `error` message exists.
+- The length counter is a polite live region with the spoken name "Character count".
+- The required asterisk is part of the label's accessible name.
+- Prefix and suffix are linked with `aria-describedby`; `prefixLabel` / `suffixLabel` give them a spoken name.
+- The control border meets 3:1 contrast against the page in light and dark (`--control-border`).
+- The password toggle is a real button with `aria-label` and `aria-pressed`.
+- Placeholder text is never the only instruction.
+- **Announcing errors.** Validate on blur, render messages in a polite live region, and change the message text so assistive tech announces it. `error` messages already use `role="alert"`; see *Validate on blur*.
+
+### Interactive elements inside the field
+
+Avoid nesting buttons in a field: they can cause focus problems. Two exceptions are built in on purpose: the **password toggle** (it's a real button with a name and `aria-pressed`, and it matters more than the rule) and the `endAdornment` slot. For anything else, place the control **next to** the field, as `ChatComposer` does with Send.
+- Focus is a 2px ring (`--control-border-focus`), visible in light and dark modes.
+- Status colours were chosen for 3:1 against the page; icons back them up.
+
+## API
+
+<Controls of={InputStories.Default} />
+
+Any other native `<input>` / `<textarea>` attribute (`name`, `autoComplete`, `onBlur`, `inputMode`, …) is forwarded to the control. The ref points at the control.
+
+## Tokens used
+
+`--control-bg`, `--control-bg-disabled`, `--control-border`, `--control-border-hover`, `--control-border-focus`, `--control-border-{danger,warning,success}` (≥3:1 against the page), `--control-text`, `--control-placeholder`, `--text-{danger,warning,success,info}`, `--size-100…500`, `--r-md`, `--space-*`.

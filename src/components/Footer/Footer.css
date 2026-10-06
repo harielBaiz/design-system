@@ -1,0 +1,4 @@
+.ds-footer { display: flex; align-items: center; justify-content: center; gap: var(--space-4); padding: var(--space-6) var(--gutter); background: var(--bg-subtle); width: 100%; }
+.ds-footer p, .ds-footer a { margin: 0; font: 400 14px/16px var(--f-ui); color: var(--text-3); text-decoration: none; }
+.ds-footer a:hover { font-weight: 600; }
+@media (max-width: 640px) { .ds-footer { flex-direction: column; text-align: center; padding-inline: var(--gutter-mobile); } }

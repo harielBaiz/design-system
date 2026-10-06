@@ -1,0 +1,9 @@
+.ds-contact { background: var(--bg-inverse); color: var(--text-on-inverse); text-align: center; padding: var(--section-gap) var(--gutter); display: flex; flex-direction: column; align-items: center; gap: var(--space-6); width: 100%; }
+.ds-contact h2 { font: var(--t-display-lg); margin: 0; color: var(--text-on-inverse); }
+.ds-contact p { font: var(--t-body-lg); color: var(--text-on-inverse-2); margin: 0; max-width: 560px; }
+.ds-contact__email { display: inline-flex; align-items: center; gap: 2px; font: var(--t-ui-lg); color: var(--text-on-inverse); }
+.ds-contact__email .ds-copy { color: var(--text-on-inverse-2); }
+.ds-contact__email .ds-copy:hover { color: var(--text-on-inverse); }
+.ds-contact__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-4); }
+.ds-contact a.ds-contact__link { color: var(--text-on-inverse-2); font: var(--t-ui-md); text-decoration: none; padding: var(--space-3) var(--space-1); }
+.ds-contact a.ds-contact__link:hover { color: var(--text-on-inverse); text-decoration: underline; text-underline-offset: 3px; }

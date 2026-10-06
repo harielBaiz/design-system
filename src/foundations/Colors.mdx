@@ -1,0 +1,33 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Colors" />
+
+# Colors
+
+Swatches read the live CSS variables, so they change with the Theme switch.
+
+export const Swatch = ({ name }) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 6, width: 112 }}>
+    <div style={{ height: 56, borderRadius: 8, background: `var(${name})`, border: '1px solid var(--border)' }} />
+    <code style={{ fontSize: 11 }}>{name}</code>
+  </div>
+);
+export const Row = ({ title, names }) => (
+  <>
+    <h3>{title}</h3>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, margin: '8px 0 24px' }}>{names.map((n) => <Swatch key={n} name={n} />)}</div>
+  </>
+);
+
+<Row title="Neutral primitives" names={['--n-0','--n-50','--n-100','--n-200','--n-300','--n-400','--n-500','--n-550','--n-600','--n-700','--n-800','--n-900','--n-950']} />
+<Row title="Background and surface" names={['--bg','--bg-subtle','--bg-muted','--bg-inverse','--surface-card','--surface-card-inverse','--surface-feature']} />
+<Row title="Text" names={['--text','--text-2','--text-3','--text-on-inverse','--text-on-inverse-2']} />
+<Row title="Border" names={['--border','--border-mid','--border-str','--border-on-inverse']} />
+<Row title="Brand (interactive only)" names={['--brand','--brand-hover','--brand-fill','--brand-fill-hover','--brand-tag-bg','--focus-ring']} />
+<Row title="Status surfaces" names={['--surface-success','--surface-danger','--surface-warning','--surface-info']} />
+<Row title="Status text" names={['--text-success','--text-danger','--text-warning','--text-info']} />
+<Row title="Control borders (validation)" names={['--control-border','--control-border-focus','--control-border-success','--control-border-danger','--control-border-warning']} />
+<Row title="Success scale" names={['--success-50','--success-100','--success-300','--success-500','--success-600','--success-800','--success-950']} />
+<Row title="Danger scale" names={['--danger-50','--danger-100','--danger-300','--danger-500','--danger-600','--danger-800','--danger-950']} />
+<Row title="Warning scale" names={['--warning-50','--warning-100','--warning-300','--warning-500','--warning-600','--warning-800','--warning-950']} />
+<Row title="Info scale" names={['--info-50','--info-100','--info-300','--info-500','--info-600','--info-800','--info-950']} />

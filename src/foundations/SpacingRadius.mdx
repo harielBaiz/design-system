@@ -1,0 +1,42 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Spacing, radius, size" />
+
+# Spacing, radius and control size
+
+4px base. Every margin, padding and gap should use a token.
+
+export const Bar = ({ name, px }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '6px 0' }}>
+    <code style={{ width: 120, fontSize: 12 }}>{name}</code>
+    <div style={{ width: `var(${name})`, height: 16, background: 'var(--text-3)', borderRadius: 2 }} />
+    <span style={{ fontSize: 12, color: 'var(--text-3)' }}>{px}</span>
+  </div>
+);
+
+## Space
+
+<Bar name="--space-1" px="4" /><Bar name="--space-2" px="8" /><Bar name="--space-3" px="12" /><Bar name="--space-4" px="16" /><Bar name="--space-6" px="24" /><Bar name="--space-8" px="32" /><Bar name="--space-12" px="48" /><Bar name="--space-16" px="64" /><Bar name="--space-20" px="80" /><Bar name="--space-24" px="96" />
+
+## Radius
+
+export const Rad = ({ name, px }) => (
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+    <div style={{ width: 72, height: 72, background: 'var(--surface-card)', border: '1px solid var(--border-str)', borderRadius: `var(${name})` }} />
+    <code style={{ fontSize: 12 }}>{name}</code><span style={{ fontSize: 11, color: 'var(--text-3)' }}>{px}</span>
+  </div>
+);
+
+<div style={{ display: 'flex', gap: 24 }}><Rad name="--r-sm" px="6" /><Rad name="--r-md" px="12" /><Rad name="--r-lg" px="20" /><Rad name="--r-pill" px="999" /></div>
+
+## Control size
+
+Shared by Input and Button so they align in a row.
+
+| Token | px | Name |
+|---|---|---|
+| `--size-100` | 28 | xs |
+| `--size-200` | 32 | sm |
+| `--size-300` | 40 | md (default) |
+| `--size-400` | 48 | lg |
+| `--size-500` | 56 | xl |

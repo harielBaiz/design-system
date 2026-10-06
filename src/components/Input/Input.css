@@ -1,0 +1,81 @@
+.ds-input { display: flex; flex-direction: column; gap: var(--space-1); font-family: var(--f-ui); min-width: 0; width: 100%; }
+
+.ds-input__label { font: var(--t-label-md); color: var(--text); }
+.ds-input__req { color: var(--text-danger); }
+.ds-input__desc { margin: 0; font: var(--t-caption); color: var(--text-3); }
+.ds-input__support { flex: 1; min-width: 0; }
+
+/* field = bordered box; the native control inside is borderless so icons/adornments sit inside */
+.ds-input__field {
+  position: relative; display: flex; align-items: center; gap: var(--space-2);
+  min-height: var(--size-300); padding-inline: var(--space-3);
+  background: var(--control-bg); color: var(--control-text);
+  border: 1px solid var(--control-border); border-radius: var(--r-md);
+  transition: border-color .15s, box-shadow .15s, background .15s;
+}
+.ds-input__field:hover { border-color: var(--control-border-hover); }
+.ds-input__field:focus-within { border-color: var(--control-border-focus); box-shadow: 0 0 0 1px var(--control-border-focus); }
+
+.ds-input__control {
+  flex: 1; min-width: 0; align-self: stretch; width: 100%;
+  background: transparent; border: 0; outline: 0; padding: 0; margin: 0;
+  color: inherit; font: var(--t-ui-lg);
+}
+.ds-input__control::placeholder { color: var(--control-placeholder); opacity: 1; }
+/* native clear X is replaced by our own button so it looks and reads the same everywhere */
+.ds-input__control[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; display: none; }
+.ds-input__control[type="color"] { padding: 4px 0; cursor: pointer; }
+.ds-input__control[type="file"] { padding-block: var(--space-2); font: var(--t-ui-md); }
+
+.ds-input__affix { flex-shrink: 0; color: var(--text-3); font: var(--t-ui-lg); white-space: nowrap; user-select: none; }
+.ds-input--xs .ds-input__affix { font: var(--t-caption); }
+.ds-input--sm .ds-input__affix { font: var(--t-ui-md); }
+.ds-input__icon { display: inline-flex; color: var(--text-3); flex-shrink: 0; }
+.ds-input__toggle {
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  background: transparent; border: 0; padding: var(--space-1); border-radius: var(--r-sm);
+  color: var(--text-3); cursor: pointer;
+}
+.ds-input__toggle:hover:not(:disabled) { color: var(--text); }
+.ds-input__adornment { display: inline-flex; flex-shrink: 0; margin-right: calc(var(--space-2) * -1); }
+
+/* sizes: height from shared control scale; type from the ui scale */
+.ds-input--xs .ds-input__field { min-height: var(--size-100); padding-inline: var(--space-2); border-radius: var(--r-sm); }
+.ds-input--xs .ds-input__control { font: var(--t-caption); }
+.ds-input--sm .ds-input__field { min-height: var(--size-200); padding-inline: var(--space-3); }
+.ds-input--sm .ds-input__control { font: var(--t-ui-md); }
+.ds-input--md .ds-input__field { min-height: var(--size-300); }
+.ds-input--lg .ds-input__field { min-height: var(--size-400); padding-inline: var(--space-4); }
+.ds-input--xl .ds-input__field { min-height: var(--size-500); padding-inline: var(--space-4); }
+.ds-input--xl .ds-input__control { font-size: 18px; line-height: 28px; }
+
+/* textarea: grows from min-height, vertical resize only */
+.ds-input--textarea .ds-input__field { align-items: stretch; padding-block: var(--space-2); }
+.ds-input--textarea .ds-input__control { resize: vertical; min-height: 4.5em; line-height: 1.5; padding-block: 2px; }
+
+/* validation states */
+.ds-input--error   .ds-input__field { border-color: var(--control-border-danger); }
+.ds-input--warning .ds-input__field { border-color: var(--control-border-warning); }
+.ds-input--success .ds-input__field { border-color: var(--control-border-success); }
+.ds-input--error   .ds-input__field:focus-within { box-shadow: 0 0 0 1px var(--control-border-danger); }
+.ds-input--warning .ds-input__field:focus-within { box-shadow: 0 0 0 1px var(--control-border-warning); }
+.ds-input--success .ds-input__field:focus-within { box-shadow: 0 0 0 1px var(--control-border-success); }
+
+/* disabled / read-only */
+.is-disabled .ds-input__field { background: var(--control-bg-disabled); border-color: var(--border); cursor: not-allowed; }
+.is-disabled .ds-input__control, .is-disabled .ds-input__label, .is-disabled .ds-input__desc { color: var(--control-text-disabled); cursor: not-allowed; }
+.is-disabled .ds-input__field:hover { border-color: var(--border); }
+.is-readonly .ds-input__field { background: var(--bg-muted); border-style: dashed; }
+
+/* footer: messages (icon + text so colour is never the only signal) + counter */
+.ds-input__footer { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); min-height: 16px; }
+.ds-input__messages { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.ds-input__msg { display: flex; align-items: center; gap: var(--space-1); font: var(--t-caption); }
+.ds-input__msg svg { flex-shrink: 0; }
+.ds-input__msg--error   { color: var(--text-danger); }
+.ds-input__msg--warning { color: var(--text-warning); }
+.ds-input__msg--success { color: var(--text-success); }
+.ds-input__msg--info    { color: var(--text-info); }
+.ds-input__count { margin-left: auto; font: var(--t-caption); color: var(--text-3); font-variant-numeric: tabular-nums; }
+.ds-input__count--warning { color: var(--text-warning); }
+.ds-input__count--error   { color: var(--text-danger); }

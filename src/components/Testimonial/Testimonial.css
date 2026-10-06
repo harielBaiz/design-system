@@ -1,0 +1,11 @@
+.ds-quote { margin: 0; }
+.ds-quote__icon { width: 3rem; color: var(--text-3); margin-bottom: var(--space-2); display: block; }
+.ds-quote__text { font: 400 2.5rem/1.25 var(--f-body); color: var(--text); margin: 0 0 var(--space-6); }
+.ds-quote__meta { display: flex; gap: var(--space-2); font: var(--t-ui-lg); }
+.ds-quote__role { font-weight: 600; color: var(--text); flex-shrink: 0; }
+.ds-quote__moment { color: var(--text-3); }
+.ds-quote--sm { background: var(--surface-feature); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--space-6); }
+.ds-quote--sm .ds-quote__text { font: italic 400 1rem/1.6 var(--f-body); margin-bottom: var(--space-3); }
+.ds-quote--sm .ds-quote__meta { font-size: .82rem; }
+@media (max-width: 1024px) { .ds-quote__text { font-size: 2.2rem; } }
+@media (max-width: 480px)  { .ds-quote__text { font-size: 1.8rem; } .ds-quote__icon { width: 2.5rem; } }

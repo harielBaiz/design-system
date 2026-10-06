@@ -1,0 +1,123 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+A button triggers an action. It tells people what will happen next.
+
+<Primary />
+<Controls of={ButtonStories.Primary} />
+
+## Usage
+
+Buttons appear in forms, dialogs, cards and page sections.
+
+### Parts
+
+- **Label:** an action verb or phrase that says what happens next.
+- **Button:** the pressable area.
+- **Icon (optional):** most buttons don't need one. Add it only when it has a clear, well-known meaning.
+
+### Use one primary action
+
+Include one `primary` button per page or area. Several primaries compete for attention and make the next step unclear. Step secondary actions down to `secondary`, `ghost` or `text`.
+
+### Buttons act, links navigate
+
+Use `Button` for actions on the current page (submit, copy, close, play). Use `LinkButton` when the URL changes. Screen readers treat the two differently, so don't swap them.
+
+<Canvas of={ButtonStories.AsLink} />
+
+## Variants
+
+`primary` · `secondary` · `ghost` · `text` · `danger`, plus `inverse` and `inverse-outline` for dark sections.
+
+<Canvas of={ButtonStories.Primary} />
+<Canvas of={ButtonStories.Secondary} />
+<Canvas of={ButtonStories.Ghost} />
+<Canvas of={ButtonStories.Text} />
+<Canvas of={ButtonStories.Danger} />
+<Canvas of={ButtonStories.OnInverse} />
+
+### Sizes
+
+<Canvas of={ButtonStories.Sizes} />
+
+### With an icon, icon only, full width
+
+<Canvas of={ButtonStories.WithIcon} />
+<Canvas of={ButtonStories.IconOnly} />
+<Canvas of={ButtonStories.FullWidth} />
+
+### Loading
+
+Use `loading` while work is in progress. The button keeps focus, blocks repeat clicks and sets `aria-busy`.
+
+<Canvas of={ButtonStories.Loading} />
+
+### Toggle
+
+For binary choices such as Save or Favorite. Pass `pressed` and `onPressedChange`; the button sets `aria-pressed` and flips to the solid fill. Swap an outline icon for a filled one and keep the label length similar in both states ("Save" / "Saved") so the layout doesn't jump.
+
+<Canvas of={ButtonStories.Toggle} />
+
+### Truncation
+
+Avoid truncation. When space is tight, the label ends in an ellipsis and the full text stays available to screen readers.
+
+<Canvas of={ButtonStories.Truncation} />
+
+## Accessibility
+
+### Avoid disabling buttons
+
+A disabled button doesn't explain why it can't be used. It also leaves the tab order and gets no hover, focus or click events. Especially on forms, keep the button pressable and use validation to explain what is missing. Example: `ChatComposer` keeps Send enabled and shows "Type a question first" if the field is empty.
+
+Use `disabled` only when an action truly isn't available and the reason is obvious from the surrounding UI.
+
+<Canvas of={ButtonStories.Disabled} />
+
+### Never put a tooltip on a disabled button
+
+Tooltips can't be reached on every device or by every assistive technology. If the reason matters, show it as helper text next to the button.
+
+### Other requirements
+
+- Icon-only buttons need an `aria-label`.
+- Focus is a 2px ring from `--focus-ring`.
+- Loading buttons announce "Loading" to screen readers.
+- Targets: `sm` is 32px, `md` 40px, `lg` 48px. Use `lg` for touch-first layouts. Treat `sm` as a density option for tables and toolbars, not the default.
+
+## Best practices
+
+### Alignment
+
+Match the primary button to the alignment of the group.
+
+- **Right-align** for focused tasks, short flows and dialogs, so people end on the main action.
+- **Left-align** for full-page forms and content-heavy screens, where people scan top-left first.
+
+<Canvas of={ButtonStories.GroupAlignment} />
+
+## Content guidelines
+
+- **Sentence case.** "Save changes", not "Save Changes" or "SAVE CHANGES".
+- **Short, no punctuation.** Drop unneeded articles: "Add member", not "Add a member."
+- **Start with a verb and be specific.** "Send message" beats "OK" or "Submit".
+- **Match nearby text.** If the dialog title says "Delete project", the button says "Delete project", not "Remove".
+
+## API
+
+<Controls of={ButtonStories.Primary} />
+
+`LinkButton` takes the same visual props plus `href` and `external` (opens in a new tab with `rel="noopener noreferrer"`). Both forward a ref and any native attribute.
+
+## Related
+
+Input, ChatComposer, Tabs.
+
+## Tokens used
+
+`--brand-fill`, `--brand-fill-hover`, `--text-on-inverse`, `--border-mid`, `--border-str`, `--bg-muted`, `--surface-danger`, `--text-danger`, `--border-danger`, `--focus-ring`, `--size-200…400`, `--r-md`, `--space-*`, `--t-label-md`, `--t-label-lg`.

@@ -1,0 +1,29 @@
+/*
+ * Arcade theme: the AI agent's retro look (amber / pink / teal on deep purple),
+ * expressed ONLY by re-mapping semantic tokens. No component changes.
+ * Palette taken from side projects/portfolio-agent/public/style.css.
+ * Enable with <html data-theme="arcade">.
+ */
+[data-theme="arcade"] {
+  --bg: #1a1030;          --bg-subtle: #251845;   --bg-muted: #1d1238;   --bg-inverse: #ffb000;
+  --surface-card: #251845; --surface-card-inverse: #4a3510; --surface-overlay: rgba(26,16,48,.95); --surface-feature: #251845;
+
+  --text: #f4ecff;  --text-2: #d6c9f0;  --text-3: #a89bc7;
+  --text-on-inverse: #1a1030;  --text-on-inverse-2: #4a3510;
+
+  --border: #4b2f8a;  --border-mid: #5d3fa8;  --border-str: #7a5fc4;  --border-on-inverse: #4a3510;
+
+  --brand: #ffb000;  --brand-hover: #ffc440;  --brand-fill: #ffb000;  --brand-fill-hover: #ffc440;  --brand-tag-bg: #4b2f8a;
+  --focus-ring: #2de2c9;
+
+  --surface-success: #0f3a3a;  --border-success: #2de2c9;  --text-success: #2de2c9;
+  --surface-danger:  #3a1230;  --border-danger:  #ff4d8d;  --text-danger:  #ff7aa8;
+  --surface-warning: #4a3510;  --border-warning: #ffb000;  --text-warning: #ffb000;
+  --surface-info:    #1d1238;  --border-info:    #7a5fc4;  --text-info:    #c9b8ff;
+  --control-border-success: #2de2c9;  --control-border-danger: #ff4d8d;  --control-border-warning: #ffb000;
+
+  --control-bg: #120a26;  --control-bg-disabled: #1d1238;  --control-border: #4b2f8a;  --control-border-hover: #7a5fc4;  --control-border-focus: #2de2c9;
+  --control-text: #f4ecff;  --control-placeholder: #a89bc7;  --control-text-disabled: #7d6fa0;
+
+  --r-sm: 0; --r-md: 0; --r-lg: 0;   /* square pixel corners */
+}

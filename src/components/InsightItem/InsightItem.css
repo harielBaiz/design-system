@@ -1,0 +1,7 @@
+.ds-insight { display: grid; grid-template-columns: auto 1fr; gap: var(--space-3); align-items: start; background: var(--surface-feature); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--space-4); font: 400 .9rem/1.65 var(--f-body); color: var(--text-2); margin: 0; list-style: none; }
+.ds-insight strong { font-family: var(--f-ui); color: var(--text); }
+.ds-insight__icon { margin-top: var(--space-1); color: var(--text-3); display: inline-flex; }
+.ds-insight--win  { background: var(--surface-success); border-color: var(--border-success); }
+.ds-insight--win  .ds-insight__icon { color: var(--text-success); }
+.ds-insight--pain { background: var(--surface-danger); border-color: var(--border-danger); }
+.ds-insight--pain .ds-insight__icon { color: var(--text-danger); }

@@ -1,0 +1,61 @@
+.ds-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  font: var(--t-label-md); letter-spacing: .1px; white-space: nowrap; text-decoration: none;
+  border: 1px solid transparent; border-radius: var(--r-md); cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s, transform .15s, opacity .15s;
+}
+.ds-btn:disabled, .ds-btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; transform: none !important; }
+
+/* sizes: height from shared control scale */
+.ds-btn--sm { min-height: var(--size-200); padding: 0 var(--space-4); }
+.ds-btn--md { min-height: var(--size-300); padding: 0 var(--space-6); }
+.ds-btn--lg { min-height: var(--size-400); padding: 0 var(--space-8); font: var(--t-label-lg); }
+.ds-btn--icon.ds-btn--sm { width: var(--size-200); padding: 0; }
+.ds-btn--icon.ds-btn--md { width: var(--size-300); padding: 0; }
+.ds-btn--icon.ds-btn--lg { width: var(--size-400); padding: 0; }
+
+.ds-btn--primary { background: var(--brand-fill); color: var(--text-on-inverse); }
+.ds-btn--primary:hover:not(:disabled) { background: var(--brand-fill-hover); transform: translateY(-1px); }
+
+.ds-btn--secondary { background: transparent; color: var(--text); border-color: var(--border-mid); }
+.ds-btn--secondary:hover:not(:disabled) { border-color: var(--border-str); transform: translateY(-1px); }
+
+.ds-btn--ghost { background: transparent; color: var(--text-2); }
+.ds-btn--ghost:hover:not(:disabled) { background: var(--bg-muted); color: var(--text); }
+
+/* Plain text button (portfolio .btn-text-dark) */
+.ds-btn--text { background: transparent; color: var(--text-2); font-weight: 400; padding-inline: var(--space-1); min-height: 0; }
+.ds-btn--text:hover:not(:disabled) { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+
+/* On inverse surfaces (contact section) */
+.ds-btn--inverse { background: var(--bg-inverse); color: var(--text-on-inverse); }
+.ds-btn--inverse:hover:not(:disabled) { opacity: .88; }
+.ds-btn--inverse-outline { background: transparent; color: var(--text-on-inverse); border-color: var(--border-on-inverse); }
+.ds-btn--inverse-outline:hover:not(:disabled) { border-color: var(--text-on-inverse); }
+
+.ds-btn--danger { background: var(--surface-danger); color: var(--text-danger); border-color: var(--border-danger); }
+.ds-btn--danger:hover:not(:disabled) { border-color: var(--control-border-danger); }
+
+/* full width */
+.ds-btn--full { width: 100%; }
+
+/* label truncates with an ellipsis in narrow containers; full text stays in the DOM for screen readers */
+.ds-btn { max-width: 100%; }
+.ds-btn__content { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2); min-width: 0; }
+.ds-btn__content { max-width: 100%; }
+.ds-btn__label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ds-btn--icon .ds-btn__label { display: inline-flex; overflow: visible; }
+
+/* loading: keeps the button focusable (not `disabled`), blocks clicks, shows a spinner */
+.ds-btn.is-loading { cursor: progress; position: relative; }
+.ds-btn.is-loading .ds-btn__content { visibility: hidden; }
+.ds-btn__spinner {
+  position: absolute; inset: 0; margin: auto; width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid currentColor; border-right-color: transparent; animation: ds-spin .7s linear infinite;
+}
+@keyframes ds-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .ds-btn__spinner { animation-duration: 2s !important; } }
+
+/* toggle: pressed state flips to the solid brand fill */
+.ds-btn--secondary[aria-pressed="true"], .ds-btn--ghost[aria-pressed="true"] { background: var(--brand-fill); color: var(--text-on-inverse); border-color: transparent; }
+.ds-btn--secondary[aria-pressed="true"]:hover:not(:disabled), .ds-btn--ghost[aria-pressed="true"]:hover:not(:disabled) { background: var(--brand-fill-hover); }

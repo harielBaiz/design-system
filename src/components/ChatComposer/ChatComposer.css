@@ -1,0 +1,5 @@
+.ds-composer { display: flex; flex-direction: column; gap: var(--space-3); width: 100%; }
+.ds-composer__chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.ds-composer__row { display: flex; align-items: flex-start; gap: var(--space-2); }
+.ds-composer__row .ds-input { flex: 1; }
+.ds-composer__hint { margin: 0; font: var(--t-caption); color: var(--text-3); }
