@@ -1,0 +1,16 @@
+/* The select fills the whole box (so every pixel opens it); the chevron is decoration on top. */
+.ds-select__field { padding-inline: 0; }
+.ds-select__control {
+  appearance: none; -webkit-appearance: none; cursor: pointer;
+  padding-inline: var(--field-pad) calc(var(--field-pad) + 24px);
+  text-overflow: ellipsis;
+}
+.ds-select__control option, .ds-select__control optgroup { color: var(--control-text); background: var(--control-bg); }
+/* the empty prompt reads like a placeholder until a real option is chosen */
+.ds-select__control:has(option[value=""]:checked) { color: var(--control-placeholder); }
+.ds-select__chevron {
+  position: absolute; inset-block: 0; inset-inline-end: var(--field-pad);
+  display: inline-flex; align-items: center; color: var(--text-3); pointer-events: none;
+}
+.ds-select__field:hover .ds-select__chevron { color: var(--text); }
+.ds-field.is-disabled .ds-select__control { cursor: not-allowed; }

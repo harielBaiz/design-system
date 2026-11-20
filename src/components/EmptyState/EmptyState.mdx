@@ -1,0 +1,73 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as EmptyStateStories from './EmptyState.stories';
+
+<Meta of={EmptyStateStories} />
+
+# Empty state
+
+What people see when there is nothing to show yet.
+
+<Primary />
+<Controls of={EmptyStateStories.Default} />
+
+## Usage
+
+### When to use
+
+- A list, table or inbox has **no items yet** (first use).
+- A search or filter returns **no results**.
+- Content failed to load and people can try again.
+- Something was cleared on purpose: “You are all caught up”.
+
+### When not to use
+
+- While content is loading. Use `Skeleton` or `ProgressCircle`.
+- For a message about the app. Use `Banner` or `Notice`.
+- For a field with no value. Leave the field empty.
+
+### Best practices
+
+- Say **why** it is empty and **what to do next**. “No messages yet” plus a clear action beats “Nothing here”.
+- Use one **primary** action. Add a secondary one only if it is really different.
+- Keep the title short and the description to one or two sentences.
+- Match the tone to the cause: friendly for first use, calm and practical for errors.
+- Use the `sm` size inside cards and lists, `lg` for a whole page.
+
+## Variants
+
+### Default and actions
+
+<Canvas of={EmptyStateStories.Default} />
+<Canvas of={EmptyStateStories.WithActions} />
+
+### No results
+
+<Canvas of={EmptyStateStories.NoResults} />
+
+### Error
+
+<Canvas of={EmptyStateStories.ErrorState} />
+
+### Sizes
+
+<Canvas of={EmptyStateStories.Sizes} />
+
+### Compact and custom illustration
+
+<Canvas of={EmptyStateStories.InsideACard} />
+<Canvas of={EmptyStateStories.CustomIllustration} />
+
+## Accessibility
+
+- The title is a real heading (`h3` by default). Change the level with `as` so it fits the page outline.
+- The icon is decorative and hidden from screen readers. The text carries the message.
+- Actions are normal buttons or links, in reading order after the text.
+- When a search returns nothing, announce it with a live region so screen readers hear it.
+
+## API
+
+<Controls of={EmptyStateStories.Default} />
+
+## Tokens used
+
+`--bg-muted`, `--border`, `--text`, `--text-2`, `--t-heading-sm`, `--t-ui-md`, `--space-*`.

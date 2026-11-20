@@ -1,0 +1,11 @@
+.ds-sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ds-motiontext__caret { display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: text-bottom; background: currentColor; animation: ds-blink 1s steps(1) infinite; }
+.ds-motiontext__w { display: inline-block; opacity: 0; transform: translateY(.35em); animation: ds-word-in var(--dur-slow) var(--ease-out) forwards; }
+.ds-motiontext__word { display: inline-block; font-weight: 600; animation: ds-word-in var(--dur-slow) var(--ease-out); }
+.ds-motiontext--shimmer {
+  color: transparent; background: linear-gradient(100deg, var(--text-3) 35%, var(--text) 50%, var(--text-3) 65%) 0 0 / 250% 100%;
+  -webkit-background-clip: text; background-clip: text; animation: ds-shimmer-text 2.2s linear infinite;
+}
+@keyframes ds-blink { 50% { opacity: 0; } }
+@keyframes ds-word-in { from { opacity: 0; transform: translateY(.35em); } to { opacity: 1; transform: none; } }
+@keyframes ds-shimmer-text { from { background-position: 100% 0; } to { background-position: -100% 0; } }

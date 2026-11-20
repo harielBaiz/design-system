@@ -1,0 +1,6 @@
+.ds-tooltip {
+  display: block; max-width: 240px; padding: var(--space-1) var(--space-2); border-radius: var(--r-sm);
+  background: var(--bg-inverse); color: var(--text-on-inverse); font: var(--t-caption); text-align: left;
+  box-shadow: var(--shadow-md); pointer-events: none;
+}
+.ds-popover[role="tooltip"] { pointer-events: none; }

@@ -1,0 +1,35 @@
+.ds-radio--md { --radio-size: 20px; }
+.ds-radio--sm { --radio-size: 16px; }
+.ds-radio--sm .ds-field__label { font: var(--t-ui-md); }
+
+.ds-radio__control {
+  position: relative; display: inline-flex; flex-shrink: 0;
+  width: var(--radio-size); height: var(--radio-size); margin-top: 2px;
+}
+.ds-radio__input { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.ds-radio__input:disabled { cursor: not-allowed; }
+
+.ds-radio__box {
+  position: relative; width: 100%; height: 100%;
+  background: var(--control-bg); border: 2px solid var(--control-border); border-radius: var(--r-pill);
+  transition: border-color .15s, background .15s;
+}
+/* the dot grows in from the centre */
+.ds-radio__box::after {
+  content: ''; position: absolute; inset: 3px; border-radius: inherit;
+  background: var(--control-selected-bg); transform: scale(0); transition: transform .12s;
+}
+.ds-radio__input:hover:not(:disabled) + .ds-radio__box { border-color: var(--control-border-hover); }
+.ds-radio__input:checked + .ds-radio__box { border-color: var(--control-selected-bg); }
+.ds-radio__input:checked + .ds-radio__box::after { transform: scale(1); }
+.ds-radio__input:checked:hover:not(:disabled) + .ds-radio__box { border-color: var(--control-selected-bg-hover); }
+.ds-radio__input:checked:hover:not(:disabled) + .ds-radio__box::after { background: var(--control-selected-bg-hover); }
+.ds-radio__input:focus-visible + .ds-radio__box { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+.ds-group--error .ds-radio__input:not(:checked) + .ds-radio__box { border-color: var(--control-border-danger); }
+.ds-group--warning .ds-radio__input:not(:checked) + .ds-radio__box { border-color: var(--control-border-warning); }
+
+.ds-radio__input:disabled + .ds-radio__box { background: var(--control-bg-disabled); border-color: var(--border); }
+.ds-radio__input:disabled:checked + .ds-radio__box { border-color: var(--border-mid); }
+.ds-radio__input:disabled:checked + .ds-radio__box::after { background: var(--border-mid); }
+.ds-radio .ds-field__label { user-select: none; }

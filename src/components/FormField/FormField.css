@@ -1,0 +1,86 @@
+/* FormField: shared shell for every form control. Component CSS adds only what is specific to it. */
+.ds-field { display: flex; flex-direction: column; gap: var(--space-1); font-family: var(--f-ui); min-width: 0; width: 100%; }
+
+/* per-size horizontal padding, shared by boxed controls (Input, Select) */
+.ds-field--xs { --field-pad: var(--space-2); }
+.ds-field--sm { --field-pad: var(--space-3); }
+.ds-field--md { --field-pad: var(--space-3); }
+.ds-field--lg, .ds-field--xl { --field-pad: var(--space-4); }
+
+/* label, supporting text */
+.ds-field__label { font: var(--t-label-md); color: var(--text); }
+.ds-field__req { color: var(--text-danger); }
+.ds-field__desc { margin: 0; font: var(--t-caption); color: var(--text-3); }
+.ds-field__support { flex: 1; min-width: 0; }
+
+/* boxed control (Input, Select): bordered box, native control inside is borderless */
+.ds-field__box {
+  position: relative; display: flex; align-items: center; gap: var(--space-2);
+  min-height: var(--size-300); padding-inline: var(--field-pad, var(--space-3));
+  background: var(--control-bg); color: var(--control-text);
+  border: 1px solid var(--control-border); border-radius: var(--r-md);
+  transition: border-color .15s, box-shadow .15s, background .15s;
+}
+.ds-field__box:hover { border-color: var(--control-border-hover); }
+.ds-field__box:focus-within { border-color: var(--control-border-focus); box-shadow: 0 0 0 1px var(--control-border-focus); }
+
+.ds-field__control {
+  flex: 1; min-width: 0; align-self: stretch; width: 100%;
+  background: transparent; border: 0; outline: 0; padding: 0; margin: 0;
+  color: inherit; font: var(--t-ui-lg);
+}
+
+/* sizes: height from the shared control scale; type from the ui scale */
+.ds-field--xs .ds-field__box { min-height: var(--size-100); border-radius: var(--r-sm); }
+.ds-field--xs .ds-field__control { font: var(--t-caption); }
+.ds-field--sm .ds-field__box { min-height: var(--size-200); }
+.ds-field--sm .ds-field__control { font: var(--t-ui-md); }
+.ds-field--md .ds-field__box { min-height: var(--size-300); }
+.ds-field--lg .ds-field__box { min-height: var(--size-400); }
+.ds-field--xl .ds-field__box { min-height: var(--size-500); }
+.ds-field--xl .ds-field__control { font-size: 18px; line-height: 28px; }
+
+/* validation states: border follows the worst message */
+.ds-field--error   .ds-field__box { border-color: var(--control-border-danger); }
+.ds-field--warning .ds-field__box { border-color: var(--control-border-warning); }
+.ds-field--success .ds-field__box { border-color: var(--control-border-success); }
+.ds-field--error   .ds-field__box:focus-within { box-shadow: 0 0 0 1px var(--control-border-danger); }
+.ds-field--warning .ds-field__box:focus-within { box-shadow: 0 0 0 1px var(--control-border-warning); }
+.ds-field--success .ds-field__box:focus-within { box-shadow: 0 0 0 1px var(--control-border-success); }
+
+/* disabled / read-only */
+.ds-field.is-disabled .ds-field__box { background: var(--control-bg-disabled); border-color: var(--border); cursor: not-allowed; }
+.ds-field.is-disabled .ds-field__control,
+.ds-field.is-disabled .ds-field__label,
+.ds-field.is-disabled .ds-field__desc { color: var(--control-text-disabled); cursor: not-allowed; }
+.ds-field.is-disabled .ds-field__box:hover { border-color: var(--border); }
+.ds-field.is-readonly .ds-field__box { background: var(--bg-muted); border-style: dashed; }
+
+/* footer: supporting text or messages, plus an optional counter */
+.ds-field__footer { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); min-height: 16px; }
+.ds-field__messages { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.ds-field__msg { display: flex; align-items: center; gap: var(--space-1); font: var(--t-caption); }
+.ds-field__msg svg { flex-shrink: 0; }
+.ds-field__msg--error   { color: var(--text-danger); }
+.ds-field__msg--warning { color: var(--text-warning); }
+.ds-field__msg--success { color: var(--text-success); }
+.ds-field__msg--info    { color: var(--text-info); }
+.ds-field__count { margin-left: auto; font: var(--t-caption); color: var(--text-3); font-variant-numeric: tabular-nums; }
+.ds-field__count--warning { color: var(--text-warning); }
+.ds-field__count--error   { color: var(--text-danger); }
+
+/* inline layout: control first, text beside it (Checkbox, Radio, Toggle) */
+.ds-field--inline { width: fit-content; max-width: 100%; }
+.ds-field__row { display: flex; align-items: flex-start; gap: var(--space-3); }
+.ds-field__text { display: flex; flex-direction: column; gap: 2px; min-width: 0; padding-top: 1px; }
+.ds-field--inline .ds-field__label { font: var(--t-ui-lg); cursor: pointer; }
+.ds-field--inline .ds-field__support { flex: none; }
+.ds-field--inline.is-disabled .ds-field__label { cursor: not-allowed; }
+
+/* group: fieldset + legend */
+.ds-group { margin: 0; padding: 0; border: 0; min-inline-size: 0; display: flex; flex-direction: column; gap: var(--space-2); font-family: var(--f-ui); }
+.ds-group__legend { padding: 0; font: var(--t-label-md); color: var(--text); }
+.ds-group:disabled .ds-group__legend { color: var(--control-text-disabled); }
+.ds-group__items { display: flex; gap: var(--space-3); }
+.ds-group__items--vertical { flex-direction: column; }
+.ds-group__items--horizontal { flex-direction: row; flex-wrap: wrap; column-gap: var(--space-6); }

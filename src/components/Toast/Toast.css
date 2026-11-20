@@ -1,0 +1,33 @@
+.ds-toast-region {
+  position: fixed; inset: auto; margin: 0; padding: var(--space-4); border: 0; background: transparent; overflow: visible;
+  display: flex; flex-direction: column; gap: var(--space-2); width: min(420px, 100vw); max-height: 100vh; pointer-events: none;
+}
+.ds-toast-region--bottom-end { right: 0; bottom: 0; } .ds-toast-region--bottom-start { left: 0; bottom: 0; }
+.ds-toast-region--top-end { right: 0; top: 0; flex-direction: column-reverse; } .ds-toast-region--top-start { left: 0; top: 0; flex-direction: column-reverse; }
+.ds-toast-region--bottom { left: 50%; bottom: 0; transform: translateX(-50%); }
+.ds-toast-wrap { pointer-events: auto; animation: ds-toast-in var(--dur-base) var(--ease-out); }
+.ds-toast {
+  --tt-accent: var(--text-3);
+  display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-3) var(--space-4);
+  background: var(--surface-card); color: var(--text); border: 1px solid var(--border-mid); border-left: 4px solid var(--tt-accent);
+  border-radius: var(--r-md); box-shadow: var(--shadow-lg); font: var(--t-ui-md);
+}
+.ds-toast--info { --tt-accent: var(--text-info); } .ds-toast--success { --tt-accent: var(--text-success); }
+.ds-toast--warning { --tt-accent: var(--text-warning); } .ds-toast--danger { --tt-accent: var(--text-danger); }
+.ds-toast--neutral { --tt-accent: var(--border-str); }
+.ds-toast__icon { flex: none; margin-top: 1px; color: var(--tt-accent); }
+.ds-toast__body { flex: 1; min-width: 0; }
+.ds-toast__title { margin: 0; font-weight: 600; }
+.ds-toast__desc { margin: 2px 0 0; color: var(--text-2); }
+.ds-toast__action {
+  flex: none; align-self: center; padding: var(--space-1) var(--space-2); border: 0; border-radius: var(--r-sm);
+  background: transparent; color: var(--text); font: var(--t-label-md); text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+}
+.ds-toast__action:hover { background: var(--bg-muted); }
+.ds-toast__close {
+  flex: none; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin: -4px -8px 0 0; padding: 0;
+  border: 0; border-radius: var(--r-sm); background: transparent; color: var(--text-2); cursor: pointer;
+}
+.ds-toast__close:hover { background: var(--bg-muted); color: var(--text); }
+.ds-toast__action:focus-visible, .ds-toast__close:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+@keyframes ds-toast-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }

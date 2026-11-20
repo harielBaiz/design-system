@@ -1,0 +1,87 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as RadioStories from './Radio.stories';
+
+<Meta of={RadioStories} />
+
+# Radio
+
+Form control for choosing one option from a set. Use `RadioGroup` around the `Radio` options.
+
+<Primary />
+<Controls of={RadioStories.Default} />
+
+## Usage
+
+### When to use
+
+- Users choose **one** option from mutually exclusive choices.
+- The options fit on the screen (about seven or fewer).
+- You would otherwise use a Select but have room to show the options.
+
+### When not to use
+
+- More than one option may be chosen: use Checkbox.
+- Users may need to choose **none**: a radio can't be unselected. Use Checkbox.
+- There are too many options to show: use Select.
+
+### Best practices
+
+- Make the label clickable, and list options vertically.
+- Be careful with a **default**. It can't be undone, and it can push people toward your assumption. If unsure, select nothing.
+- Always name the group with a visible `legend`.
+- Put an error about the choice on the **group**, under the options.
+
+## Variants
+
+<Canvas of={RadioStories.Default} />
+
+### Descriptions
+
+<Canvas of={RadioStories.WithDescriptions} />
+
+### Horizontal
+
+Use only for short labels. Vertical lists are easier to read.
+
+<Canvas of={RadioStories.Horizontal} />
+
+### No default and required
+
+<Canvas of={RadioStories.NoDefault} />
+
+### Validation
+
+<Canvas of={RadioStories.ErrorState} />
+
+### Disabled
+
+<Canvas of={RadioStories.Disabled} />
+<Canvas of={RadioStories.OneOptionDisabled} />
+
+### Controlled
+
+<Canvas of={RadioStories.Controlled} />
+
+## Accessibility
+
+- A `fieldset` with `role="radiogroup"` and a `legend` names the set. `required` sets `aria-required` on the group.
+- The options share one `name`, so the browser gives you the standard behavior: **Tab** enters the group once, **arrow keys** move and select.
+- Each option is a real `<input type="radio">` with a clickable label.
+- `aria-describedby` on the group links the description and error messages.
+- The circle has a 2px border at 3:1 contrast or better, a 2px focus ring, and the filled dot shows the state without relying on colour.
+
+## API
+
+### RadioGroup
+
+<Controls of={RadioStories.Default} />
+
+`name` (generated if omitted), `value`, `defaultValue`, `onValueChange(value)`, plus `legend`, `hideLegend`, `description`, `messages`, `required`, `disabled`, `orientation`.
+
+### Radio
+
+`value` (required), `label`, `hideLabel`, `description`, `size` (`sm` or `md`), `disabled`. Other native `<input>` attributes are forwarded.
+
+## Tokens used
+
+`--control-bg`, `--control-border`, `--control-border-hover`, `--control-selected-bg`, `--control-selected-bg-hover`, `--control-border-{danger,warning}`, `--control-bg-disabled`, `--focus-ring`, `--r-pill`.

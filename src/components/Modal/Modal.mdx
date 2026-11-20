@@ -1,0 +1,76 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as ModalStories from './Modal.stories';
+
+<Meta of={ModalStories} />
+
+# Modal
+
+A dialog that sits on top of the page and asks for a decision or a short task.
+
+<Primary />
+<Controls of={ModalStories.Default} />
+
+## Usage
+
+### When to use
+
+- Confirm a **destructive** or irreversible action.
+- Ask for a short piece of information that blocks the next step.
+- Show something the person must read before going on (terms, a warning).
+
+### When not to use
+
+- For a message that can wait. Use `Notice`, `Banner` or `Toast`.
+- For long or multi-step flows. Use a page.
+- For help text. Use `Tooltip` or inline text.
+- For a menu of actions. Use `Dropdown`.
+
+### Best practices
+
+- Write a **title** that says what the dialog is for, and make the primary button name the action: “Delete project”, not “OK”.
+- Put the primary action **last**, on the right. Keep **Cancel** next to it.
+- Keep content short. If it scrolls a lot, it should be a page.
+- Do not open a modal from a modal.
+- Never open one on page load, except for something legally required.
+- Use `kind="danger"` for destructive confirmations and make Cancel the easy way out.
+
+## Variants
+
+### Default
+
+<Canvas of={ModalStories.Default} />
+
+### Confirmation
+
+<Canvas of={ModalStories.Confirmation} />
+
+### Forced choice
+
+Turn off `dismissible` only when the person must choose. Escape, the scrim and the close button stop working.
+
+<Canvas of={ModalStories.ForcedChoice} />
+
+### Long content
+
+The body scrolls. The header and footer stay in place.
+
+<Canvas of={ModalStories.LongContent} />
+
+## Accessibility
+
+- Built on the native `<dialog>` with `showModal()`: focus moves into the dialog, **Tab stays inside**, and the page behind is inert.
+- **Escape** closes it (unless `dismissible` is off). Focus returns to the button that opened it.
+- The title names the dialog (`aria-labelledby`) and the description is linked with `aria-describedby`.
+- `kind="danger"` sets `role="alertdialog"` so assistive tech treats it as urgent.
+- The page behind cannot scroll while the dialog is open.
+- Motion is shortened to zero when the person prefers reduced motion.
+
+## API
+
+<Controls of={ModalStories.Default} />
+
+`open` and `onClose` are required: the dialog is controlled. Other props are forwarded to the `<dialog>`.
+
+## Tokens used
+
+`--surface-card`, `--border-mid`, `--border`, `--overlay-scrim`, `--shadow-lg`, `--r-lg`, `--text-danger`, `--dur-base`, `--ease-out`.

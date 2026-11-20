@@ -1,0 +1,14 @@
+/* reset the UA popover look (centered, bordered, canvas background) */
+.ds-popover {
+  position: fixed; inset: auto; margin: 0; padding: 0; border: 0; overflow: visible;
+  width: max-content; max-width: calc(100vw - 16px); height: auto;
+  background: transparent; color: var(--text);
+}
+.ds-popover--card {
+  background: var(--surface-card); border: 1px solid var(--border-mid); border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+}
+.ds-popover:popover-open { animation: ds-pop-in var(--dur-base) var(--ease-out); }
+.ds-popover[data-side="top"]:popover-open { --ds-pop-y: 4px; }
+.ds-popover[data-side="bottom"]:popover-open { --ds-pop-y: -4px; }
+@keyframes ds-pop-in { from { opacity: 0; transform: translateY(var(--ds-pop-y, 0)); } to { opacity: 1; transform: none; } }

@@ -1,0 +1,79 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as MotionTextStories from './MotionText.stories';
+
+<Meta of={MotionTextStories} />
+
+# Motion text
+
+Text with a small amount of motion: typing, a word-by-word reveal, a shimmer, or a rotating word.
+
+<Primary />
+<Controls of={MotionTextStories.Typewriter} />
+
+## Usage
+
+### When to use
+
+- Show that something is **being written** (an AI reply) or **being worked on** (thinking).
+- Add a touch of life to a **single** hero line or an empty prompt.
+- Rotate a few short words in a headline.
+
+### When not to use
+
+- For body text or anything people need to read quickly.
+- For important messages, errors or instructions.
+- More than once per screen. Motion competes for attention.
+
+### Best practices
+
+- Pick the effect by purpose: **typewriter** for a reply that is arriving, **shimmer** for waiting, **reveal** for a headline, **cycle** for a short list of options.
+- Keep it short. Under about 80 characters.
+- Do not loop forever on content people must read. Let it finish and stay.
+- Keep the final text stable and in the layout from the start, so nothing jumps.
+- Cycle three to five words, each of similar length.
+
+## Variants
+
+### Typewriter
+
+<Canvas of={MotionTextStories.Typewriter} />
+
+### Reveal words
+
+<Canvas of={MotionTextStories.Reveal} />
+
+### Shimmer
+
+<Canvas of={MotionTextStories.Shimmer} />
+
+### Cycle words
+
+<Canvas of={MotionTextStories.Cycle} />
+
+### Loop
+
+<Canvas of={MotionTextStories.Loop} />
+
+## Examples
+
+### Replay
+
+<Canvas of={MotionTextStories.Replay} />
+
+## Accessibility
+
+- Screen readers get the **full text at once** in a visually hidden copy. The animated copy is `aria-hidden`, so nothing is read letter by letter.
+- For **cycle**, the hidden copy lists every word once, so the content is not lost.
+- When the person prefers **reduced motion**, the text is shown **static**: no typing, no reveal, no shimmer, no rotation (the first word stays).
+- Shimmer keeps a 4.5:1 contrast at both ends of the gradient.
+- Never use motion text for something that must be read within a time limit.
+
+## API
+
+<Controls of={MotionTextStories.Typewriter} />
+
+`speed` means ms per character (typewriter), ms between words (reveal) and ms each word stays (cycle). `as` changes the element (`h1`, `p`).
+
+## Tokens used
+
+`--text`, `--text-3`, `--dur-slow`, `--ease-out`.

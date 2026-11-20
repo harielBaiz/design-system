@@ -1,0 +1,26 @@
+.ds-modal {
+  padding: 0; border: 1px solid var(--border-mid); border-radius: var(--r-lg);
+  background: var(--surface-card); color: var(--text); box-shadow: var(--shadow-lg);
+  width: min(var(--md-w, 520px), calc(100vw - 32px)); max-height: min(calc(100vh - 64px), 720px); overflow: hidden;
+}
+.ds-modal--sm { --md-w: 400px; } .ds-modal--lg { --md-w: 720px; }
+.ds-modal[open] { display: flex; flex-direction: column; animation: ds-modal-in var(--dur-base) var(--ease-out); }
+.ds-modal[open]::backdrop { background: var(--overlay-scrim); animation: ds-fade-in var(--dur-base) var(--ease-out); }
+.ds-modal__panel { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+.ds-modal__header { display: flex; align-items: flex-start; gap: var(--space-4); padding: var(--space-6) var(--space-6) var(--space-2); }
+.ds-modal__heading { flex: 1; min-width: 0; }
+.ds-modal__title { margin: 0; font: var(--t-heading-sm); }
+.ds-modal__desc { margin: var(--space-1) 0 0; font: var(--t-ui-md); color: var(--text-2); }
+.ds-modal__close {
+  flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; margin: -4px -8px 0 0; padding: 0;
+  border: 0; border-radius: var(--r-sm); background: transparent; color: var(--text-2); cursor: pointer;
+}
+.ds-modal__close:hover { background: var(--bg-muted); color: var(--text); }
+.ds-modal__close:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.ds-modal__body { padding: var(--space-2) var(--space-6) var(--space-4); overflow-y: auto; font: var(--t-body-md); color: var(--text-2); }
+.ds-modal__footer { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: var(--space-2); padding: var(--space-4) var(--space-6) var(--space-6); border-top: 1px solid var(--border); }
+.ds-modal--danger .ds-modal__title { color: var(--text-danger); }
+html:has(.ds-modal[open]) { overflow: hidden; }
+@keyframes ds-modal-in { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+@keyframes ds-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 520px) { .ds-modal__footer > * { flex: 1 1 auto; } }

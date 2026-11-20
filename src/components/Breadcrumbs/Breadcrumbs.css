@@ -1,0 +1,14 @@
+.ds-crumbs { font: var(--t-ui-md); }
+.ds-crumbs__list { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.ds-crumbs__item { display: inline-flex; align-items: center; gap: var(--space-1); min-width: 0; }
+.ds-crumbs__link, .ds-crumbs__current { display: inline-flex; align-items: center; gap: var(--space-1); padding: 2px var(--space-1); border-radius: var(--r-sm); }
+.ds-crumbs__link { color: var(--text-2); text-decoration: none; }
+.ds-crumbs__link:hover { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.ds-crumbs__current { color: var(--text); font-weight: 600; }
+.ds-crumbs__sep { display: inline-flex; color: var(--text-3); }
+.ds-crumbs__more {
+  display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 24px; padding: 0;
+  border: 0; border-radius: var(--r-sm); background: transparent; color: var(--text-2); cursor: pointer;
+}
+.ds-crumbs__more:hover { background: var(--bg-muted); color: var(--text); }
+.ds-crumbs__link:focus-visible, .ds-crumbs__more:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }

@@ -1,0 +1,86 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as ToastStories from './Toast.stories';
+
+<Meta of={ToastStories} />
+
+# Toast
+
+A short message that appears over the page after an action, then goes away.
+
+<Primary />
+<Controls of={ToastStories.Static} />
+
+## Usage
+
+### When to use
+
+- Confirm that something **worked**: “Changes saved”, “Link copied”.
+- Report a **background** result: an upload finished, a message arrived.
+- Offer a quick **undo** after a reversible action.
+
+### When not to use
+
+- For something people must act on. Use `Modal` or `Notice`.
+- For errors in a form. Use the field messages.
+- For something that should stay on the page. Use `Notice` or `Banner`.
+- For marketing or tips.
+
+### Best practices
+
+- Keep it to one short line. Add a second line only if it helps.
+- Say **what happened**, in the past tense: “Message sent”.
+- Add **one** action at most, and only for undo or a quick follow-up.
+- Leave it long enough to read, **5 seconds** by default. Errors stay until dismissed.
+- Show at most four at once. Do not stack the same message again and again.
+- Anything that appears only in a toast and matters, like a failed save, must also be visible somewhere on the page.
+
+## Setup
+
+Wrap the app once, then call `toast()` from any component.
+
+```tsx
+<ToastProvider>
+  <App />
+</ToastProvider>
+
+const { toast } = useToast();
+toast({ title: 'Changes saved', tone: 'success' });
+```
+
+## Variants
+
+### Tones
+
+<Canvas of={ToastStories.Tones} />
+
+### With an undo action
+
+<Canvas of={ToastStories.WithAction} />
+
+### Stays until dismissed
+
+<Canvas of={ToastStories.Sticky} />
+
+### Static preview
+
+<Canvas of={ToastStories.Static} />
+
+## Accessibility
+
+- The toasts live in a **polite live region** called “Notifications”, so screen readers announce them without moving focus. Danger toasts use `role="alert"` and are announced right away.
+- **Hovering or focusing** a toast pauses its timer. It resumes on leave or blur, so people can read it and reach the action.
+- Every toast has a close button. Errors do not close on their own.
+- The tone is shown by an icon, a coloured edge **and** the wording, not by colour alone.
+- Toasts render in the **top layer**, so they appear above a open modal and are never clipped.
+- Motion is removed with reduced motion.
+- Do not put anything essential only in a toast: it can disappear before someone reads it.
+
+## API
+
+<Controls of={ToastStories.Static} />
+
+`useToast()` returns `toast(options) → id` and `dismiss(id?)`. Options: `title`, `description`, `tone`, `duration`, `action: { label, onClick }`. `ToastProvider` takes `limit` (default 4) and `placement`.
+
+## Tokens used
+
+`--surface-card`, `--border-mid`, `--shadow-lg`, `--text-{info,success,warning,danger}`, `--dur-base`, `--ease-out`, `--r-md`.

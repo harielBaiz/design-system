@@ -12,5 +12,5 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "include": ["src", ".storybook"]
+  "include": ["src", ".storybook", "site", "vite.site.config.ts"]
 }

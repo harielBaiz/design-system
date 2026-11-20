@@ -1,0 +1,70 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as SkeletonStories from './Skeleton.stories';
+
+<Meta of={SkeletonStories} />
+
+# Skeleton
+
+A placeholder in the shape of content that is still loading.
+
+<Primary />
+<Controls of={SkeletonStories.Text} />
+
+## Usage
+
+### When to use
+
+- Content takes **more than about a second** to load and you know its layout: lists, cards, profiles, tables.
+- You want the page to stay stable, with no jump when content arrives.
+
+### When not to use
+
+- For a short wait. Show nothing.
+- For a task with known progress. Use `ProgressCircle`.
+- When you do not know the layout. Use a spinner (indeterminate `ProgressCircle`).
+- For errors or empty data. Use `EmptyState`.
+
+### Best practices
+
+- Match the **size and position** of the real content. Skeletons that do not match make the page jump.
+- Use text lines for text, a rectangle for images, a circle for avatars.
+- Show the skeleton for the parts that are loading. Keep headings and labels you already have.
+- Make the last line of a paragraph shorter, like real text.
+- Do not show more than one shimmer per screen area. Calm beats busy.
+
+## Variants
+
+### Text and paragraph
+
+<Canvas of={SkeletonStories.Text} />
+<Canvas of={SkeletonStories.Paragraph} />
+
+### Rectangle and circle
+
+<Canvas of={SkeletonStories.Rect} />
+<Canvas of={SkeletonStories.Circle} />
+
+### Still (no shimmer)
+
+<Canvas of={SkeletonStories.Still} />
+
+## Examples
+
+### From loading to loaded
+
+<Canvas of={SkeletonStories.CardLoading} />
+
+## Accessibility
+
+- Skeletons are **decorative** and carry `aria-hidden`. Screen readers would only hear noise.
+- Mark the region that is loading with `aria-busy="true"` and remove it when done. Announce the finished result with a live region when it matters.
+- The shimmer **stops** when the person prefers reduced motion. The grey shape stays.
+- Do not use a skeleton as the only sign of loading for people who cannot see it: the busy state covers that.
+
+## API
+
+<Controls of={SkeletonStories.Text} />
+
+## Tokens used
+
+`--bg-muted`, `--text`, `--r-sm`, `--r-md`, `--ease-in-out`.

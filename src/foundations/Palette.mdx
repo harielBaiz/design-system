@@ -1,0 +1,71 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { PaletteGrid, ContrastTable } from './PaletteGrid';
+import './PaletteGrid.css';
+
+<Meta title="Foundations/Palette" />
+
+# Color palette
+
+A scale of raw colors to choose from. **Nothing here has a meaning yet.** A step is not “primary” or “error” until you give it a job.
+
+Twelve hues and a neutral scale, each in steps from **50** (lightest) to **950** (darkest). Every step has the same perceived lightness in every hue, so 500 is a mid tone in red, in blue and in green alike. The palette is fixed: it does not change with the Theme switch.
+
+## Palette or semantic?
+
+<div className="pal__tablewrap">
+  <table className="pal__table">
+    <thead><tr><th scope="col"></th><th scope="col">Palette (this page)</th><th scope="col">Semantic (Colors page)</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Names</th><td><code>--color-blue-500</code></td><td><code>--text-info</code>, <code>--surface-danger</code></td></tr>
+      <tr><th scope="row">Meaning</th><td>None. It is just a color.</td><td>A job: text, border, surface, status</td></tr>
+      <tr><th scope="row">Changes with theme</th><td>No</td><td>Yes (light, dark, arcade)</td></tr>
+      <tr><th scope="row">Use in components</th><td><strong>Never directly</strong></td><td>Always</td></tr>
+    </tbody>
+  </table>
+</div>
+
+When a color needs a job, add a semantic token in `tokens.css` that points to a palette step, for example `--text-info: var(--color-blue-700)`. Then components use the semantic token. Changing a color later is one edit.
+
+## Choose a color
+
+<PaletteGrid />
+
+## Reading the scale
+
+- **50 to 200** are tints. Use them for backgrounds and fills behind dark text.
+- **300 and 400** are light mid tones. Use them for borders, dividers and decoration, not for text.
+- **500 and 600** are the strong mid tones. They suit fills, charts and icons. Check the contrast before putting text on them.
+- **700 to 950** are shades. Use them for text on light backgrounds, or for surfaces in dark themes.
+
+### Contrast
+
+Text needs **4.5:1** against its background (3:1 for large text and for icons and control borders). Switch the swatch label to **Contrast** above to see the best ratio for each step against white or black. This table shows where each hue crosses the line:
+
+<ContrastTable />
+
+## Usage
+
+### Best practices
+
+- Pick **two or three hues** for a product and use the neutral scale for everything else.
+- Keep the same step for the same job across hues, for example 100 for tinted surfaces and 700 for text on them. Steps line up, so the contrast stays predictable.
+- Check contrast for **every** text and background pair, in every theme. A step that works on white may fail on a dark surface.
+- Do not use color alone to carry meaning. Add an icon, a label or a pattern.
+
+### Don't
+
+- Don't use a palette color directly in a component. Use a semantic token.
+- Don't mix steps from different hues to make a new in-between color.
+- Don't use a tint (50 to 200) as text on white.
+
+## Tokens
+
+All steps are CSS variables named `--color-{hue}-{step}`, for example `--color-teal-600`. They are generated from one script, so every hue stays consistent:
+
+```bash
+node scripts/generate-palette.mjs
+```
+
+This writes `src/tokens/palette.css` (the variables) and `src/tokens/palette.ts` (the same values for docs and tools). To add a hue or change a step, edit the script and run it again. Do not edit the generated files by hand.
+
+The existing status scales (`--success-*`, `--danger-*`, `--warning-*`, `--info-*`) and the neutral scale (`--n-*`) are unchanged.

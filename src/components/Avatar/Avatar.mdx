@@ -1,0 +1,88 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as AvatarStories from './Avatar.stories';
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+A small visual that represents a person, a team or a bot.
+
+<Primary />
+<Controls of={AvatarStories.Default} />
+
+## Usage
+
+### When to use
+
+- Show who wrote a message, owns an item or is in a list.
+- Give a person a recognisable shape in dense lists and chat.
+- Show presence (online, busy, away) next to a name.
+
+### When not to use
+
+- As a decorative image. Use a normal image.
+- To show a logo or a product. Use an image or Icon.
+- To show a count of people on its own. Use `Badge`.
+
+### Best practices
+
+- Always give the avatar a **name**. It builds the initials, the colour and the accessible name.
+- Show a person's **photo** when you have one. The avatar falls back to initials if it fails to load.
+- Pick a size that matches the text next to it: `sm` beside body text, `md` in lists, `lg` in headers.
+- Use `AvatarGroup` for a stack. It collapses extra people into “+N”.
+- Do not use presence colour alone to tell people something important. It is also read out.
+
+## Variants
+
+### Sizes
+
+<Canvas of={AvatarStories.Sizes} />
+
+### Shapes
+
+Circles are for people. Squares are for teams, workspaces and bots.
+
+<Canvas of={AvatarStories.Shapes} />
+
+### Colours
+
+The colour comes from the name, so the same person always gets the same colour.
+
+<Canvas of={AvatarStories.Colors} />
+
+### Image and fallback
+
+<Canvas of={AvatarStories.Image} />
+<Canvas of={AvatarStories.ImageFallback} />
+
+### Presence
+
+<Canvas of={AvatarStories.Presence} />
+
+### Icon
+
+<Canvas of={AvatarStories.IconFallback} />
+
+## Examples
+
+### Group
+
+<Canvas of={AvatarStories.Group} />
+
+## Accessibility
+
+- The avatar is an image with an accessible name made of the **name** and the **presence**, for example “Ana Pérez, online”.
+- The image is decorative (`alt=""`) because the name is already on the wrapper.
+- Initials and icons are hidden from screen readers.
+- The “+N” in a group is read as “N more”.
+- Colours come from the status token pairs, which meet text contrast in all three themes.
+
+## API
+
+<Controls of={AvatarStories.Default} />
+
+`AvatarGroup` takes `max` (default 4) and `size`. The “+N” avatar counts as one of the `max` slots.
+
+## Tokens used
+
+`--bg-muted`, `--border`, `--surface-{info,success,warning,danger}`, `--text-{info,success,warning,danger}`, `--border-{info,success,warning,danger}`, `--r-sm`, `--r-md`.

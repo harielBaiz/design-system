@@ -1,0 +1,69 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as EmojiPickerStories from './EmojiPicker.stories';
+
+<Meta of={EmojiPickerStories} />
+
+# Emoji picker
+
+A panel for choosing an emoji, with search and categories.
+
+<Primary />
+<Controls of={EmojiPickerStories.Default} />
+
+## Usage
+
+### When to use
+
+- Add an emoji to a message, a comment or a status.
+- React to content.
+
+### When not to use
+
+- To pick an icon for the interface. Use `Icon`.
+- To give a status that needs a word. Use `Badge` or text.
+- When the platform keyboard already offers emoji (mobile text fields).
+
+### Best practices
+
+- Open it from a labelled button with a smile icon, inside a `Popover`.
+- Close the picker and return focus to the button after a choice. For reactions that people add in a row, keep it open instead.
+- Show **Recent** first once there is history.
+- Never use an emoji as the only content of a label. Pair it with text.
+- Keep the built-in set small, or pass your own `categories`.
+
+## Variants
+
+### Default
+
+<Canvas of={EmojiPickerStories.Default} />
+
+### With recent emoji
+
+<Canvas of={EmojiPickerStories.WithRecent} />
+
+### In a popover
+
+<Canvas of={EmojiPickerStories.InAPopover} />
+
+### Columns
+
+<Canvas of={EmojiPickerStories.FewColumns} />
+
+## Accessibility
+
+- Search is a real input with a label. The result count is announced in a polite live region.
+- Categories are toggle buttons with names (“Food”, “Symbols”).
+- The grid uses **roving focus**: Tab enters it once, then **arrow keys** move, **Home and End** jump. Enter or Space chooses.
+- Each emoji has a name (its first keyword) so screen readers do not read a code point.
+- **Escape** closes the popover when the picker is inside one, and focus returns to the trigger.
+- Cells are at least 36 px, which is a comfortable touch target.
+
+## API
+
+<Controls of={EmojiPickerStories.Default} />
+
+`categories` takes `{ id, label, icon, emojis: [emoji, keywords][] }[]`.
+
+## Tokens used
+
+`--surface-card`, `--control-*`, `--border`, `--bg-muted`, `--focus-ring`, `--r-sm`, `--t-eyebrow`.

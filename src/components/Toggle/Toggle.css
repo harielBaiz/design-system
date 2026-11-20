@@ -1,0 +1,37 @@
+.ds-toggle--md { --tg-w: 44px; --tg-h: 24px; --tg-thumb: 16px; }
+.ds-toggle--sm { --tg-w: 36px; --tg-h: 20px; --tg-thumb: 12px; }
+.ds-toggle--sm .ds-field__label { font: var(--t-ui-md); }
+.ds-toggle .ds-field__row { align-items: center; }
+.ds-toggle .ds-field__text { padding-top: 0; }
+
+.ds-toggle__track {
+  position: relative; flex-shrink: 0; display: inline-flex; align-items: center;
+  width: var(--tg-w); height: var(--tg-h); padding: 0; margin: 0;
+  background: var(--control-bg); border: 2px solid var(--control-border); border-radius: var(--r-pill);
+  color: var(--control-border); cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.ds-toggle__thumb {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: var(--tg-thumb); height: var(--tg-thumb); margin-inline-start: 2px;
+  background: currentColor; border-radius: var(--r-pill);
+  transition: transform .15s;
+}
+.ds-toggle__thumb svg { opacity: 0; color: var(--control-selected-bg); }
+
+.ds-toggle__track:hover:not(:disabled) { border-color: var(--control-border-hover); color: var(--control-border-hover); }
+.ds-toggle__track[aria-checked="true"] {
+  background: var(--control-selected-bg); border-color: var(--control-selected-bg); color: var(--control-selected-text);
+}
+.ds-toggle__track[aria-checked="true"]:hover:not(:disabled) { background: var(--control-selected-bg-hover); border-color: var(--control-selected-bg-hover); color: var(--control-selected-text); }
+/* thumb travels the free width of the track; border is 2px each side */
+.ds-toggle__track[aria-checked="true"] .ds-toggle__thumb { transform: translateX(calc(var(--tg-w) - var(--tg-thumb) - 8px)); }
+.ds-toggle__track[aria-checked="true"] .ds-toggle__thumb svg { opacity: 1; }
+[dir="rtl"] .ds-toggle__track[aria-checked="true"] .ds-toggle__thumb { transform: translateX(calc((var(--tg-w) - var(--tg-thumb) - 8px) * -1)); }
+
+.ds-toggle__track:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-radius: var(--r-pill); }
+.ds-toggle__track:disabled { cursor: not-allowed; background: var(--control-bg-disabled); border-color: var(--border); color: var(--control-text-disabled); }
+.ds-toggle__track:disabled[aria-checked="true"] { background: var(--border-mid); border-color: var(--border-mid); color: var(--text-3); }
+.ds-toggle .ds-field__label { user-select: none; }
+
+@media (prefers-reduced-motion: reduce) { .ds-toggle__thumb { transition: none; } }

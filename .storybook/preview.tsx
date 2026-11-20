@@ -3,6 +3,8 @@ import type { Preview } from '@storybook/react-vite';
 import '../src/tokens/tokens.css';
 import '../src/tokens/base.css';
 import '../src/tokens/theme-arcade.css';
+import '../src/tokens/effects.css';
+import '../src/tokens/palette.css';
 
 const preview: Preview = {
   globalTypes: {

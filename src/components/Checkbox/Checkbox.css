@@ -1,0 +1,42 @@
+/* Checkbox: native input stays on top (invisible) so keyboard, label click and form behavior are native. */
+.ds-check--md { --check-size: 20px; }
+.ds-check--sm { --check-size: 16px; }
+.ds-check--sm .ds-field__label { font: var(--t-ui-md); }
+
+.ds-check__control {
+  position: relative; display: inline-flex; flex-shrink: 0;
+  width: var(--check-size); height: var(--check-size); margin-top: 2px;
+}
+.ds-check__input {
+  position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%;
+  margin: 0; opacity: 0; cursor: pointer;
+}
+.ds-check__input:disabled { cursor: not-allowed; }
+
+.ds-check__box {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 100%; height: 100%;
+  background: var(--control-bg); color: var(--control-selected-text);
+  border: 2px solid var(--control-border); border-radius: var(--r-sm);
+  transition: background .15s, border-color .15s;
+}
+.ds-check__tick, .ds-check__dash { position: absolute; opacity: 0; transition: opacity .1s; }
+
+.ds-check__input:hover:not(:disabled) + .ds-check__box { border-color: var(--control-border-hover); }
+.ds-check__input:checked + .ds-check__box,
+.ds-check__input:indeterminate + .ds-check__box { background: var(--control-selected-bg); border-color: var(--control-selected-bg); }
+.ds-check__input:checked:hover:not(:disabled) + .ds-check__box,
+.ds-check__input:indeterminate:hover:not(:disabled) + .ds-check__box { background: var(--control-selected-bg-hover); border-color: var(--control-selected-bg-hover); }
+.ds-check__input:checked + .ds-check__box .ds-check__tick { opacity: 1; }
+.ds-check__input:indeterminate + .ds-check__box .ds-check__tick { opacity: 0; }
+.ds-check__input:indeterminate + .ds-check__box .ds-check__dash { opacity: 1; }
+
+.ds-check__input:focus-visible + .ds-check__box { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+.ds-field--error .ds-check__input:not(:checked):not(:indeterminate) + .ds-check__box { border-color: var(--control-border-danger); }
+.ds-field--warning .ds-check__input:not(:checked):not(:indeterminate) + .ds-check__box { border-color: var(--control-border-warning); }
+
+.ds-check__input:disabled + .ds-check__box { background: var(--control-bg-disabled); border-color: var(--border); color: var(--control-text-disabled); }
+.ds-check__input:disabled:checked + .ds-check__box,
+.ds-check__input:disabled:indeterminate + .ds-check__box { background: var(--border-mid); border-color: var(--border-mid); }
+.ds-check .ds-field__label { user-select: none; }

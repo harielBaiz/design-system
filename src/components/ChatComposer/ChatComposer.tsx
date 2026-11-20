@@ -61,7 +61,7 @@ export function ChatComposer({
     <div className="ds-composer">
       {!used && suggestions.length > 0 && (
         <div className="ds-composer__chips">
-          {suggestions.map((s) => <Chip key={s} variant="action" disabled={locked} onClick={() => void send(s)}>{s}</Chip>)}
+          {suggestions.map((s) => <Chip key={s} interactive disabled={locked} onClick={() => void send(s)}>{s}</Chip>)}
         </div>
       )}
       <div className="ds-composer__row">

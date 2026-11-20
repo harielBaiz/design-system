@@ -1,0 +1,71 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as ProgressCircleStories from './ProgressCircle.stories';
+
+<Meta of={ProgressCircleStories} />
+
+# Progress circle
+
+A ring that shows how far a task has got, or that something is loading.
+
+<Primary />
+<Controls of={ProgressCircleStories.Default} />
+
+## Usage
+
+### When to use
+
+- Show **determinate** progress: an upload, an export, a goal (use `value`).
+- Show a short, **indeterminate** wait when the length is unknown (leave `value` out).
+- Show a score or a completion rate in a small space.
+
+### When not to use
+
+- To show the shape of the page while it loads. Use `Skeleton`.
+- For steps in a process. Use a stepper.
+- For a wait that is shorter than about a second. Show nothing.
+
+### Best practices
+
+- Prefer a **determinate** ring whenever you know the progress, because it tells people how long to wait.
+- Always give it a name that says **what** is progressing.
+- Use `md` inline with text, `lg` and `xl` for a main task. Show the percentage from `md` up.
+- Keep colour meaningful: **success** when done, **danger** when it failed, **warning** when it needs attention.
+- Pair the ring with text for long tasks (“Uploading 3 of 8 files”).
+
+## Variants
+
+### Sizes
+
+<Canvas of={ProgressCircleStories.Sizes} />
+
+### Tones
+
+<Canvas of={ProgressCircleStories.Tones} />
+
+### Indeterminate
+
+<Canvas of={ProgressCircleStories.Indeterminate} />
+
+### Animated
+
+<Canvas of={ProgressCircleStories.Animated} />
+
+### With your own content
+
+<Canvas of={ProgressCircleStories.WithContent} />
+
+## Accessibility
+
+- It has `role="progressbar"` with `aria-valuemin`, `aria-valuemax` and `aria-valuenow`. An indeterminate ring leaves out `aria-valuenow`.
+- `aria-label` is **required**. It tells screen reader users what is progressing.
+- The percentage text is hidden from assistive tech because the value is already exposed.
+- Do not rely on colour: pair a failed or completed state with an icon or text.
+- With reduced motion, the spinner slows down and the bar change is instant.
+
+## API
+
+<Controls of={ProgressCircleStories.Default} />
+
+## Tokens used
+
+`--text`, `--text-success`, `--text-warning`, `--text-danger`, `--border-mid`, `--dur-slow`, `--ease-in-out`.

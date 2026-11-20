@@ -1,0 +1,30 @@
+.ds-avatar {
+  --av: 32px;
+  position: relative; display: inline-flex; flex: none; align-items: center; justify-content: center;
+  width: var(--av); height: var(--av); border-radius: 50%;
+  font: 600 calc(var(--av) * .38)/1 var(--f-ui); letter-spacing: .02em; user-select: none;
+  background: var(--bg-muted); color: var(--text-2); border: 1px solid var(--border);
+  vertical-align: middle;
+}
+.ds-avatar--xs { --av: 20px; } .ds-avatar--sm { --av: 24px; } .ds-avatar--md { --av: 32px; }
+.ds-avatar--lg { --av: 40px; } .ds-avatar--xl { --av: 56px; }
+.ds-avatar--square { border-radius: var(--r-sm); }
+.ds-avatar--xl.ds-avatar--square { border-radius: var(--r-md); }
+.ds-avatar--info    { background: var(--surface-info);    color: var(--text-info);    border-color: var(--border-info); }
+.ds-avatar--success { background: var(--surface-success); color: var(--text-success); border-color: var(--border-success); }
+.ds-avatar--warning { background: var(--surface-warning); color: var(--text-warning); border-color: var(--border-warning); }
+.ds-avatar--danger  { background: var(--surface-danger);  color: var(--text-danger);  border-color: var(--border-danger); }
+.ds-avatar__img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block; }
+.ds-avatar__text { display: inline-flex; align-items: center; justify-content: center; }
+.ds-avatar__presence {
+  position: absolute; right: -1px; bottom: -1px; width: max(8px, 26%); height: max(8px, 26%);
+  border-radius: 50%; border: 2px solid var(--bg); background: var(--n-400); box-sizing: content-box; transform: translate(10%, 10%);
+}
+.ds-avatar__presence--online { background: var(--text-success); }
+.ds-avatar__presence--busy { background: var(--text-danger); }
+.ds-avatar__presence--away { background: var(--text-warning); }
+.ds-avatar__presence--offline { background: transparent; border-color: var(--n-400); box-shadow: inset 0 0 0 2px var(--bg); }
+.ds-avatar-group { display: inline-flex; align-items: center; }
+.ds-avatar-group > .ds-avatar { box-shadow: 0 0 0 2px var(--bg); }
+.ds-avatar-group > .ds-avatar + .ds-avatar { margin-inline-start: calc(var(--av, 32px) * -.18); }
+.ds-avatar--more { font-weight: 600; }

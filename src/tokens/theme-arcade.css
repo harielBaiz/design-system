@@ -24,6 +24,7 @@
 
   --control-bg: #120a26;  --control-bg-disabled: #1d1238;  --control-border: #4b2f8a;  --control-border-hover: #7a5fc4;  --control-border-focus: #2de2c9;
   --control-text: #f4ecff;  --control-placeholder: #a89bc7;  --control-text-disabled: #7d6fa0;
+  --control-selected-bg: var(--brand-fill);  --control-selected-bg-hover: var(--brand-fill-hover);  --control-selected-text: var(--text-on-inverse);
 
   --r-sm: 0; --r-md: 0; --r-lg: 0;   /* square pixel corners */
 }

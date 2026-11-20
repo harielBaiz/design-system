@@ -1,0 +1,77 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as DropdownStories from './Dropdown.stories';
+
+<Meta of={DropdownStories} />
+
+# Dropdown
+
+A menu of actions that opens from a button.
+
+<Primary />
+<Controls of={DropdownStories.Default} />
+
+## Usage
+
+### When to use
+
+- Group **secondary actions** for one item: edit, copy, share, delete.
+- Save room with an overflow (“more”) button.
+- An account or settings menu.
+
+### When not to use
+
+- To choose a value in a form. Use `Select`.
+- To move between pages. Use `Nav` or `Tabs`.
+- For fewer than two actions. Show the button.
+- For content that is not a list of actions. Use `Popover`.
+
+### Best practices
+
+- Keep the list to **7 items or fewer**. Group longer lists with separators and labels.
+- Start each label with a **verb**: “Copy link”, not “Link”.
+- Put the most used item first, and **destructive** items last, set apart by a separator.
+- Add an icon to every item or to none. Do not mix.
+- Show a shortcut only if it works. Do not use the menu for primary actions.
+- Explain why an item is disabled in its description, instead of hiding it.
+
+## Variants
+
+### Default
+
+<Canvas of={DropdownStories.Default} />
+
+### Icon button trigger
+
+An icon-only trigger needs an `aria-label`.
+
+<Canvas of={DropdownStories.IconTrigger} />
+
+### Groups, descriptions and disabled items
+
+<Canvas of={DropdownStories.Groups} />
+
+## Examples
+
+### Handling the selection
+
+<Canvas of={DropdownStories.HandleSelection} />
+
+## Accessibility
+
+- The trigger has `aria-haspopup="menu"` and `aria-expanded`. The menu is a `role="menu"` with `role="menuitem"` buttons.
+- **Enter, Space or Arrow Down** on the trigger opens it and focuses the first item. **Arrow Up** focuses the last.
+- **Arrow Up and Down** move, **Home and End** jump, and typing a letter jumps to the next item that starts with it.
+- **Escape** closes the menu and returns focus to the trigger. **Tab** closes it and moves on.
+- Choosing an item closes the menu and returns focus to the trigger.
+- Disabled items are skipped by the keyboard.
+- Danger items are red **and** placed last, so colour is not the only cue.
+
+## API
+
+<Controls of={DropdownStories.Default} />
+
+Items are objects: `{ id, label, icon?, shortcut?, description?, danger?, disabled?, onSelect? }`, plus `{ type: 'separator' }` and `{ type: 'label', label }`. The menu opens in the top layer, so it is never clipped by a scrolling parent.
+
+## Tokens used
+
+`--surface-card`, `--border-mid`, `--shadow-lg`, `--bg-muted`, `--text-danger`, `--surface-danger`, `--focus-ring`, `--r-md`, `--r-sm`.

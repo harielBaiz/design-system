@@ -1,0 +1,67 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as NoticeStories from './Notice.stories';
+
+<Meta of={NoticeStories} />
+
+# Notice
+
+An inline message that sits next to the content it is about.
+
+<Primary />
+<Controls of={NoticeStories.Default} />
+
+## Usage
+
+### When to use
+
+- Explain a rule, a limit or a side effect near the place it applies.
+- Warn about a problem in one section or one form.
+- Confirm a result that stays visible on the page.
+
+### When not to use
+
+- For a message about the whole app. Use `Banner`.
+- For a short confirmation that can disappear. Use `Toast`.
+- For one field's error. Use the `messages` prop on the field.
+
+### Best practices
+
+- Write a short **title** that says what happened or what to know. Use the body for detail.
+- Choose the tone by the effect on the person: **danger** blocks them, **warning** may hurt them, **info** helps them.
+- Put at most two actions under the message. The first one is the safe one.
+- Place the notice **before** the content it affects, so it is read first.
+- Do not stack more than two notices in one place.
+
+## Variants
+
+### Tones
+
+<Canvas of={NoticeStories.Tones} />
+
+### With actions
+
+<Canvas of={NoticeStories.WithActions} />
+
+### Title only and body only
+
+<Canvas of={NoticeStories.TitleOnly} />
+<Canvas of={NoticeStories.BodyOnly} />
+
+### Dismissible
+
+<Canvas of={NoticeStories.Dismissible} />
+
+## Accessibility
+
+- `warning` and `danger` use `role="alert"` and are read out when they appear. Other tones use `role="status"`.
+- Meaning never relies on colour alone: each tone has its own icon and the title says what it is.
+- The close button is named “Dismiss”. Change it with `dismissLabel`.
+- When a notice appears after an action, do not move focus into it. The live region announces it.
+
+## API
+
+<Controls of={NoticeStories.Default} />
+
+## Tokens used
+
+`--surface-*`, `--border-*`, `--text-*` for each status, `--bg-subtle`, `--border-mid`, `--r-md`, `--focus-ring`.

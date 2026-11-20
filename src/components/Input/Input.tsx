@@ -1,20 +1,17 @@
 import {
-  forwardRef, useId, useRef, useState,
+  forwardRef, useRef, useState,
   type ChangeEvent, type InputHTMLAttributes, type ReactNode, type Ref, type TextareaHTMLAttributes,
 } from 'react';
 import { Icon, type IconName } from '../Icon/Icon';
+import { FormField, useField, FIELD_ICON_SIZE, mergeRefs, type FieldMessage, type MessageType } from '../FormField/FormField';
 import './Input.css';
 
 export type InputSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type InputType =
   | 'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'search'
   | 'date' | 'time' | 'file' | 'color' | 'textarea';
-export type MessageType = 'error' | 'warning' | 'success' | 'info';
-
-export interface InputMessage {
-  type: MessageType;
-  text: string;
-}
+export type { MessageType };
+export type InputMessage = FieldMessage;
 
 export interface InputLengthValidation {
   /** Minimum length: passed to the native `minlength`. The counter shows how many characters are still needed. */
@@ -68,19 +65,6 @@ export interface InputProps extends NativeProps {
   wrapperClassName?: string;
 }
 
-const MESSAGE_ICON: Record<MessageType, IconName> = {
-  error: 'alert-circle', warning: 'alert-triangle', success: 'check-circle', info: 'info',
-};
-const ICON_SIZE: Record<InputSize, number> = { xs: 12, sm: 14, md: 16, lg: 18, xl: 20 };
-
-/** Highest-severity message decides the field's visual state. */
-function fieldState(messages: InputMessage[] = []): MessageType | undefined {
-  for (const t of ['error', 'warning', 'success', 'info'] as const) {
-    if (messages.some((m) => m.type === t)) return t;
-  }
-  return undefined;
-}
-
 export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputProps>(function Input(
   {
     label, hideLabel, description, type = 'text', size = 'md', messages, validate,
@@ -91,20 +75,14 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
   },
   ref,
 ) {
-  const autoId = useId();
-  const id = idProp ?? autoId;
-  const descId = description ? `${id}-desc` : undefined;
-  const msgId = messages?.length ? `${id}-msg` : undefined;
+  const field = useField({ id: idProp, description, messages });
+  const { id, descId, msgId, state } = field;
   const countId = validate ? `${id}-count` : undefined;
   const preId = prefixText ? `${id}-prefix` : undefined;
   const sufId = suffixText ? `${id}-suffix` : undefined;
 
   const localRef = useRef<HTMLInputElement | HTMLTextAreaElement | null>(null);
-  const setRefs = (el: HTMLInputElement | HTMLTextAreaElement | null) => {
-    localRef.current = el;
-    if (typeof ref === 'function') ref(el);
-    else if (ref) (ref as { current: HTMLInputElement | HTMLTextAreaElement | null }).current = el;
-  };
+  const setRefs = mergeRefs<HTMLInputElement | HTMLTextAreaElement>(localRef, ref);
 
   const [inner, setInner] = useState(String(defaultValue ?? ''));
   const current = value !== undefined ? String(value) : inner;
@@ -119,9 +97,8 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
   const isSearch = type === 'search';
   const nativeType = isPassword && revealed ? 'text' : type;
 
-  const state = fieldState(messages);
   const leading: IconName | undefined = startIcon ?? (isSearch ? 'search' : undefined);
-  const iconPx = ICON_SIZE[size];
+  const iconPx = FIELD_ICON_SIZE[size];
   const showClear = isSearch && clearable && !disabled && !readOnly && current.length > 0;
 
   const clear = () => {
@@ -146,7 +123,7 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
   ].filter(Boolean).join(' · ');
 
   // Order matters for screen readers: prefix, suffix, supporting text, then the message, then the counter.
-  const describedBy = [preId, sufId, descId, msgId, countId].filter(Boolean).join(' ') || undefined;
+  const describedBy = field.describedBy([preId, sufId], [countId]);
 
   const common = {
     id,
@@ -161,34 +138,32 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
     'aria-required': required || undefined,
     'aria-invalid': state === 'error' || undefined,
     'aria-describedby': describedBy,
-    className: 'ds-input__control',
+    className: 'ds-field__control ds-input__control',
     ...rest,
   };
 
   const hasEnd = Boolean(endIcon || isPassword || showClear || endAdornment);
   const wrapCls = [
     'ds-input', `ds-input--${size}`,
-    state && `ds-input--${state}`,
-    disabled && 'is-disabled',
-    readOnly && 'is-readonly',
     isTextarea && 'ds-input--textarea',
     leading && 'has-start', hasEnd && 'has-end',
     wrapperClassName,
   ].filter(Boolean).join(' ');
 
-  const showFooter = Boolean(msgId || description || validate || reserveMessageSpace);
-
   return (
-    <div className={wrapCls}>
-      {label && (
-        <label className={`ds-input__label${hideLabel ? ' sr-only' : ''}`} htmlFor={id}>
-          {label}
-          {/* The asterisk stays in the accessible name, as Material recommends. */}
-          {required && <span className="ds-input__req"> *</span>}
-        </label>
+    <FormField
+      id={id} label={label} hideLabel={hideLabel} required={required}
+      description={description} descId={descId} messages={messages} msgId={msgId} state={state}
+      size={size} disabled={disabled} readOnly={readOnly}
+      reserveMessageSpace={reserveMessageSpace}
+      className={wrapCls}
+      footerEnd={validate && (
+        <span id={countId} className={`ds-field__count${counterState ? ` ds-field__count--${counterState}` : ''}`} aria-live="polite">
+          <span className="sr-only">Character count: </span>{counterText}
+        </span>
       )}
-
-      <div className={['ds-input__field', className].filter(Boolean).join(' ')}>
+    >
+      <div className={['ds-field__box ds-input__field', className].filter(Boolean).join(' ')}>
         {leading && <span className="ds-input__icon ds-input__icon--start"><Icon name={leading} size={iconPx} /></span>}
         {prefixText && !isTextarea && (
           <span className="ds-input__affix" id={preId}>
@@ -232,29 +207,6 @@ export const Input = forwardRef<HTMLInputElement | HTMLTextAreaElement, InputPro
         {endAdornment && <span className="ds-input__adornment">{endAdornment}</span>}
       </div>
 
-      {showFooter && (
-        <div className="ds-input__footer">
-          <div className="ds-input__support">
-            {/* Supporting text yields to messages on screen, but stays in the DOM for assistive tech. */}
-            {description && <p className={msgId ? 'sr-only' : 'ds-input__desc'} id={descId}>{description}</p>}
-            {msgId && (
-              <ul className="ds-input__messages" id={msgId}>
-                {messages!.map((m, i) => (
-                  <li key={i} className={`ds-input__msg ds-input__msg--${m.type}`} role={m.type === 'error' ? 'alert' : undefined}>
-                    <Icon name={MESSAGE_ICON[m.type]} size={14} />
-                    <span>{m.text}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-          {validate && (
-            <span id={countId} className={`ds-input__count${counterState ? ` ds-input__count--${counterState}` : ''}`} aria-live="polite">
-              <span className="sr-only">Character count: </span>{counterText}
-            </span>
-          )}
-        </div>
-      )}
-    </div>
+    </FormField>
   );
 });

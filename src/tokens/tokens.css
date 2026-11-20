@@ -45,7 +45,7 @@
 }
 
 /* ── 2. SEMANTIC · LIGHT (default) ──────────────────────── */
-:root {
+:root, [data-theme="light"] {
   /* Backgrounds */
   --bg:         var(--n-0);
   --bg-subtle:  var(--n-50);
@@ -102,6 +102,10 @@
   --control-text:         var(--text);
   --control-placeholder:  var(--text-3);
   --control-text-disabled: var(--text-3);
+  /* Selected state of checkbox, radio, toggle */
+  --control-selected-bg:       var(--brand-fill);
+  --control-selected-bg-hover: var(--brand-fill-hover);
+  --control-selected-text:     var(--text-on-inverse);
 }
 
 /* ── 3. SEMANTIC · DARK ─────────────────────────────────── */
@@ -152,6 +156,10 @@
   --control-text:         var(--text);
   --control-placeholder:  var(--text-3);
   --control-text-disabled: var(--text-3);
+  /* Selected state of checkbox, radio, toggle */
+  --control-selected-bg:       var(--brand-fill);
+  --control-selected-bg-hover: var(--brand-fill-hover);
+  --control-selected-text:     var(--text-on-inverse);
 }
 
 /* ── 4. TYPOGRAPHY ──────────────────────────────────────── */

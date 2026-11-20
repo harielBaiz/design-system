@@ -1,0 +1,83 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as ToggleStories from './Toggle.stories';
+
+<Meta of={ToggleStories} />
+
+# Toggle
+
+Switch control for turning a setting on or off.
+
+<Primary />
+<Controls of={ToggleStories.Default} />
+
+## Usage
+
+A toggle works like a light switch: the effect is **immediate**. A checkbox is different, because its choice is only confirmed later by a Save or Submit button.
+
+### When to use
+
+- A setting whose effect applies as soon as it changes (dark mode, reduce motion, show insights).
+
+### When not to use
+
+- The change isn't applied until the user confirms: use Checkbox.
+- Choosing between two named options: use Radio or a segmented control.
+- Inside a form that has a submit button.
+
+### Best practices
+
+- Write the label as the **thing being turned on**, not an action: "Dark mode", not "Turn on dark mode".
+- Show the result right away. If it can fail, say so and put the switch back.
+- Keep the label on the same line as the switch.
+
+## Variants
+
+<Canvas of={ToggleStories.Default} />
+<Canvas of={ToggleStories.On} />
+
+### Sizes
+
+<Canvas of={ToggleStories.Sizes} />
+
+### Description
+
+<Canvas of={ToggleStories.WithDescription} />
+
+### Disabled
+
+<Canvas of={ToggleStories.Disabled} />
+
+### Without the check mark
+
+By default a check mark appears in the thumb when on, so the state does not depend on colour alone. Hide it only when the label already makes the state obvious.
+
+<Canvas of={ToggleStories.WithoutIcon} />
+
+### Controlled
+
+`onCheckedChange` fires with the new state. That is where the effect happens.
+
+<Canvas of={ToggleStories.Controlled} />
+
+### In a group
+
+<Canvas of={ToggleStories.InAGroup} />
+
+## Accessibility
+
+- It is a `<button type="button" role="switch">` with `aria-checked`, so screen readers say "switch, on" or "off". Space and Enter toggle it.
+- The label is tied through `htmlFor`, so clicking it toggles the switch.
+- `aria-describedby` links the description and messages.
+- The track has a 2px border at 3:1 contrast or better, and a 2px focus ring.
+- A mixed (indeterminate) state is **not** supported: `role="switch"` has no mixed value. Use an indeterminate Checkbox for a parent control.
+- Motion respects `prefers-reduced-motion`.
+
+## API
+
+<Controls of={ToggleStories.Default} />
+
+`checked` / `defaultChecked`, `onCheckedChange(checked)`, `label`, `hideLabel`, `description`, `messages`, `size`, `showIcon`, `disabled`. Other native `<button>` attributes are forwarded. The ref points at the button.
+
+## Tokens used
+
+`--control-bg`, `--control-border`, `--control-border-hover`, `--control-selected-bg`, `--control-selected-bg-hover`, `--control-selected-text`, `--control-bg-disabled`, `--focus-ring`, `--r-pill`.

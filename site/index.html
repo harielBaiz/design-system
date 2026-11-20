@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Design System — H. Ariel Baiz · Senior Product Designer</title>
+    <meta name="description" content="The design system I built for my portfolio and my AI agent: tokens, React components and Storybook, with the decisions behind them." />
+    <script>
+      // Apply the saved theme before first paint so the page doesn't flash.
+      try { var t = localStorage.getItem('ds-site-theme'); if (t === 'dark' || t === 'arcade') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>

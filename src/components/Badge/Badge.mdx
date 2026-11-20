@@ -1,0 +1,103 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as BadgeStories from './Badge.stories';
+
+<Meta of={BadgeStories} />
+
+# Badge
+
+A small marker that shows a status, a count or a short label. A badge informs. It is never interactive.
+
+<Primary />
+<Controls of={BadgeStories.Default} />
+
+## Usage
+
+### When to use
+
+- Show the **status** of an item: “Beta”, “Resolved”, “Overdue”.
+- Show a **count** of unread or pending things.
+- Show a short **category** label, such as a type of customer or a project area.
+- Mark a feature that uses AI.
+
+### When not to use
+
+- For a value people can select, filter or remove. Use `Chip`.
+- For something that needs action. A badge cannot signal “do something”. Use a `Notice` or a button.
+- For long text. A badge holds one or two words.
+
+### Best practices
+
+- Keep the text **short**: one or two words, in sentence case.
+- Choose the **type** by meaning, not by looks: info, positive, warning, critical.
+- Use `bulletin` for temporary activity (new, live, unread). It is the strongest type, so use it sparingly.
+- Do not use a badge as a button. It is not focusable.
+- Do not rely on colour alone. Add a word or an icon.
+
+## Kind
+
+A badge shows either a **label** or a **count**. Passing `count` selects the count kind for you. Numbers above `max` (default 99) collapse to “99+”.
+
+<Canvas of={BadgeStories.Label} />
+<Canvas of={BadgeStories.Count} />
+
+## Type
+
+The type gives the badge its meaning. `default` has none. `ai` is for labels only.
+
+<Canvas of={BadgeStories.Types} />
+
+## Outlined
+
+Adds a border and removes the fill. Use it where a filled badge would feel heavy.
+
+<Canvas of={BadgeStories.Outlined} />
+
+## Subtle
+
+A lighter version. Only the `bulletin` type has one.
+
+<Canvas of={BadgeStories.Subtle} />
+
+## Icons
+
+Use `startIcon` or `endIcon` with an icon name, or pass your own icon. Icons are for labels. Count badges do not take them. Change the size with `iconSize` (default 12).
+
+<Canvas of={BadgeStories.WithIcons} />
+
+## Decorative
+
+`decoration` colours a label from the palette, for example `blue-300`. Use it to tell **categories** apart when there is a small, known set of them.
+
+- Label kind only. The type must be `default` and there are no icons.
+- The text colour is chosen for contrast.
+- Favour the lighter steps (200 to 400).
+- Colour has no meaning here. Do not use decoration for status.
+
+<Canvas of={BadgeStories.Decorative} />
+
+## Examples
+
+<Canvas of={BadgeStories.Examples} />
+
+### On an image
+
+The `overlay` type sits on top of media, for example “Password protected” on a case study thumbnail.
+
+<Canvas of={BadgeStories.OnImage} />
+
+## Accessibility
+
+- A badge is plain text in a `span`. Make sure its meaning is **announced**. A bare count needs an `aria-label` such as “3 unread messages”. Without it, a screen reader reads only “3”.
+- Colour is never the only signal. The text or an icon says the same thing.
+- Avoid long values. They are hard to scan and read out slowly.
+- Do not use a badge to say that something needs action. It is not focusable and is easy to miss.
+
+## API
+
+<Controls of={BadgeStories.Default} />
+
+Other props are forwarded to the `span`.
+
+## Tokens used
+
+`--bg-muted`, `--border`, `--text-2`, `--surface-*`, `--border-*`, `--text-*`, `--control-selected-bg`, `--control-selected-text`, `--brand-tag-bg`, `--surface-overlay`, `--r-pill`.

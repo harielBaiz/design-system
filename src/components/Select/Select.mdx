@@ -1,0 +1,83 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as SelectStories from './Select.stories';
+
+<Meta of={SelectStories} />
+
+# Select
+
+Dropdown field for choosing one option from a list.
+
+<Primary />
+<Controls of={SelectStories.Default} />
+
+## Usage
+
+A styled native `<select>`. The browser draws the list, so it works with every keyboard, screen reader and mobile picker.
+
+### When to use
+
+- Users choose one option from roughly **7 to 15** and space is limited.
+
+### When not to use
+
+- Fewer than 7 options: use Radio.
+- A very long list: use an input that suggests matches (a combobox).
+- An action that takes effect immediately: use a menu.
+- Site navigation: use links.
+- Choosing several options: use Checkboxes. Multiple selection is deliberately not supported.
+
+### Best practices
+
+- Treat a select as the **last resort**. People often find them harder than radios.
+- Don't change one select's options based on another. It confuses people.
+- Preselect the answer most people will pick.
+- Don't submit or apply the choice automatically on change. People change their minds, especially on a keyboard.
+- Use `placeholder` as a **prompt** ("Choose a role"), never as the label. The field always keeps its visible label.
+
+## Variants
+
+### Sizes
+
+Same five sizes and heights as Input, so they line up.
+
+<Canvas of={SelectStories.Sizes} />
+
+### States
+
+<Canvas of={SelectStories.Default} />
+<Canvas of={SelectStories.Preselected} />
+<Canvas of={SelectStories.Disabled} />
+
+### Description and required
+
+<Canvas of={SelectStories.WithDescription} />
+<Canvas of={SelectStories.Required} />
+
+### Validation
+
+<Canvas of={SelectStories.ValidationStates} />
+
+### Option groups
+
+Pass `<optgroup>` and `<option>` as children when you need groups.
+
+<Canvas of={SelectStories.WithGroups} />
+
+## Accessibility
+
+- It is a native `<select>`, so type-ahead, arrow keys and mobile pickers work out of the box.
+- The label is tied through `htmlFor` and `id`. `required` sets `aria-required`.
+- `aria-describedby` links the description and messages. `aria-invalid` is set on error.
+- The empty prompt option is disabled, so it can't be chosen again, and it is styled like placeholder text.
+- The chevron is decorative and doesn't take clicks: the whole field opens the list.
+- The border meets 3:1 contrast against the page, and focus uses the same border and ring as Input.
+
+## API
+
+<Controls of={SelectStories.Default} />
+
+`options` (`{ value, label, disabled? }[]`) or `children`, `placeholder`, `label`, `hideLabel`, `description`, `messages`, `size`, `required`, `disabled`. Other native `<select>` attributes are forwarded. The ref points at the select.
+
+## Tokens used
+
+`--control-bg`, `--control-border`, `--control-border-hover`, `--control-border-focus`, `--control-border-{danger,warning,success}`, `--control-placeholder`, `--control-bg-disabled`, `--size-100…500`, `--r-md`.

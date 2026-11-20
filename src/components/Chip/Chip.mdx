@@ -1,0 +1,106 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as ChipStories from './Chip.stories';
+
+<Meta of={ChipStories} />
+
+# Chip
+
+A token for a value people selected, a filter they can toggle, or an item they can remove.
+
+<Primary />
+<Controls of={ChipStories.Default} />
+
+## Usage
+
+### When to use
+
+- Show the values a person has **picked**, such as selected skills or recipients.
+- Offer **filters** they can switch on and off.
+- Offer **suggestions** they can tap, such as suggested prompts.
+
+### When not to use
+
+- For a status or a count. Use `Badge`.
+- For a long sentence. A chip holds one to three words.
+- For navigation. Use a link or a tab.
+
+### Chip or badge?
+
+A chip is something a person **handles**: they pick it, toggle it or remove it. A badge is something a person **reads**. If it never reacts to a click, it is a badge.
+
+### Best practices
+
+- Keep chips short. Long text truncates (see Truncated).
+- Chips are **not interactive** by default. Turn on `interactive` only when a click does something.
+- Show a close button (`onClose`) only for values people can remove.
+- Group related chips in a `ChipGroup` and give the group a name.
+
+## Default
+
+A static chip. It displays a value and has no states.
+
+<Canvas of={ChipStories.Default} />
+
+## Sizes
+
+`sm` (24px), `md` (32px, default) and `lg` (40px).
+
+<Canvas of={ChipStories.Sizes} />
+
+## Interactive
+
+With `interactive`, the chip is a button. It has hover, focus and pressed states and takes `onClick`. Add `selected` to make it a toggle, which sets `aria-pressed`.
+
+<Canvas of={ChipStories.Interactive} />
+
+## Disabled
+
+A disabled chip is dimmed and cannot be focused. It also disables its close button.
+
+<Canvas of={ChipStories.Disabled} />
+
+## Without a close button
+
+The close button only appears when you pass `onClose`.
+
+<Canvas of={ChipStories.WithoutClose} />
+
+## With icon
+
+<Canvas of={ChipStories.WithIcon} />
+
+## With icon and close button
+
+<Canvas of={ChipStories.WithIconAndClose} />
+
+## With avatar
+
+<Canvas of={ChipStories.WithAvatar} />
+
+## Truncated
+
+Set `maxWidth`. The label truncates with an ellipsis. Give the chip an `aria-label`, or keep the full text in a tooltip, so the full value stays available.
+
+<Canvas of={ChipStories.Truncated} />
+
+## Removable and filter groups
+
+<Canvas of={ChipStories.Groups} />
+
+## Accessibility
+
+- An interactive chip is a real `button`. It is reachable with Tab and activates with Enter and Space.
+- A toggle chip sets `aria-pressed`. A selected state is also shown by fill, not only by colour.
+- The close button is a separate button named “Remove” plus the chip text, for example “Remove Tokens”.
+- A disabled chip sets `aria-disabled` and removes its buttons from the tab order.
+- A static chip is plain text. Do not add click handlers to it. Use `interactive`.
+
+## API
+
+<Controls of={ChipStories.Default} />
+
+Other props are forwarded to the outer `span`.
+
+## Tokens used
+
+`--bg-muted`, `--bg-subtle`, `--control-border`, `--control-border-hover`, `--control-selected-bg`, `--control-selected-text`, `--control-bg-disabled`, `--control-text-disabled`, `--focus-ring`, `--r-pill`.

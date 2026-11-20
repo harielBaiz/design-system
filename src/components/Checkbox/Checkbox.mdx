@@ -1,0 +1,89 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+# Checkbox
+
+Form control for selecting zero, one or many options.
+
+<Primary />
+<Controls of={CheckboxStories.Default} />
+
+## Usage
+
+### When to use
+
+- Selecting any number of options from a set.
+- A yes or no choice that is confirmed later (a **Save** or **Submit** button).
+- People need to see every option at a glance.
+
+### When not to use
+
+- Only one option may be chosen: use Radio, or Select for a long list.
+- The change must apply immediately: use Toggle.
+- There are too many options to show: use a filtered list instead.
+
+### Best practices
+
+- Make the **label** clickable. The whole label toggles the box, which makes the target larger.
+- List options **vertically**. Horizontal lists make it hard to tell which label belongs to which box.
+- Write labels in positive language: "Send me updates", not "Don't send me updates".
+- Make sure the label explains **both** states. If it can't, use two Radios instead.
+- Order options in a way people can scan (alphabetical, or most used first).
+- Keep spacing generous on touch screens.
+- A set of boxes needs a visible name: wrap it in `FieldGroup`.
+
+## Variants
+
+### States
+
+<Canvas of={CheckboxStories.Default} />
+<Canvas of={CheckboxStories.Checked} />
+<Canvas of={CheckboxStories.Disabled} />
+
+### Sizes
+
+<Canvas of={CheckboxStories.Sizes} />
+
+### Description and required
+
+<Canvas of={CheckboxStories.WithDescription} />
+<Canvas of={CheckboxStories.Required} />
+
+### Validation
+
+<Canvas of={CheckboxStories.ErrorState} />
+
+## Examples
+
+### Group
+
+<Canvas of={CheckboxStories.Group} />
+<Canvas of={CheckboxStories.GroupError} />
+
+### Indeterminate
+
+A parent box shows a **mixed** state when only some children are checked. Checked means all children are checked, unchecked means none.
+
+<Canvas of={CheckboxStories.Indeterminate} />
+
+## Accessibility
+
+- It is a real `<input type="checkbox">`, so keyboard (Space toggles), form submission and label clicks are native.
+- The label is tied to the box through `htmlFor` and `id`. Clicking it toggles the box.
+- `aria-describedby` links the description and messages. `aria-invalid` is set when there is an error.
+- `indeterminate` uses the native property, which browsers expose as "mixed". It is re-applied after every render because a click clears it.
+- The box has a 2px border at 3:1 contrast or better against the page, and a 2px focus ring.
+- Group boxes in a `FieldGroup`: the legend names the set for screen readers.
+- Colour is never the only signal: a check mark or dash shows the state.
+
+## API
+
+<Controls of={CheckboxStories.Default} />
+
+Any other native `<input>` attribute (`name`, `value`, `checked`, `defaultChecked`, `onChange`, …) is forwarded to the input. The ref points at the input.
+
+## Tokens used
+
+`--control-bg`, `--control-border`, `--control-border-hover`, `--control-selected-bg`, `--control-selected-bg-hover`, `--control-selected-text`, `--control-border-{danger,warning}`, `--control-bg-disabled`, `--focus-ring`, `--r-sm`.

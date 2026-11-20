@@ -1,0 +1,68 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as ScrollerStories from './Scroller.stories';
+
+<Meta of={ScrollerStories} />
+
+# Scroller
+
+A scrolling area with a quiet scrollbar and soft edge fades that show there is more.
+
+<Primary />
+<Controls of={ScrollerStories.Vertical} />
+
+## Usage
+
+### When to use
+
+- A list or panel that must keep a **fixed height**: menus, chat history, side panels.
+- A **row** of items that is wider than its container: tags, cards, tabs.
+
+### When not to use
+
+- For the main page. Let the page scroll.
+- To hide important content. People may not notice that it scrolls.
+- For a short list that fits. Show it all.
+
+### Best practices
+
+- Always set a **height limit** (`maxHeight`) on vertical scrollers, or they will never scroll.
+- Keep the **fade** on. It is the cue that there is more content.
+- Avoid scrolling inside scrolling. Nested scrollers trap people.
+- For horizontal rows, turn on `showButtons` so mouse users do not need a trackpad.
+- Name it with a clear `aria-label`: “People”, “Topics”.
+
+## Variants
+
+### Vertical
+
+<Canvas of={ScrollerStories.Vertical} />
+
+### No fade
+
+<Canvas of={ScrollerStories.NoFade} />
+
+### Horizontal, with buttons
+
+<Canvas of={ScrollerStories.Horizontal} />
+
+### Content that fits
+
+When nothing overflows, there is no scrollbar, no fade, no buttons and no extra tab stop.
+
+<Canvas of={ScrollerStories.ShortContent} />
+
+## Accessibility
+
+- When content overflows, the area is a **focusable region** with a name, so keyboard users can scroll it with the arrow, Page and Home/End keys.
+- When it does not overflow, it is not focusable, so there is no empty tab stop.
+- The previous and next buttons are an extra for pointer users. They are hidden from the keyboard and screen readers, which use native scrolling.
+- Smooth scrolling is turned off with reduced motion.
+- Fades are purely visual. Nothing is hidden from assistive tech.
+
+## API
+
+<Controls of={ScrollerStories.Vertical} />
+
+## Tokens used
+
+`--border-str`, `--surface-card`, `--border-mid`, `--shadow-md`, `--focus-ring`, `--r-sm`.

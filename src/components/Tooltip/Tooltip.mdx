@@ -1,0 +1,76 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as TooltipStories from './Tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+A short label that appears when someone hovers or focuses an element.
+
+<Primary />
+<Controls of={TooltipStories.Default} />
+
+## Usage
+
+### When to use
+
+- Name an **icon-only** button.
+- Add a short hint, or a keyboard shortcut, to a control.
+- Explain **why** a control is unavailable.
+
+### When not to use
+
+- For information people need to complete a task. Put it on the page.
+- For anything interactive (links, buttons). Use `Popover`.
+- For errors and warnings. Use `Notice` or field messages.
+- On touch-only screens as the only way to learn something. There is no hover.
+
+### Best practices
+
+- Keep it to a few words, ideally under 10. One line is best.
+- Use plain text. No headings, images or links.
+- Do not repeat the visible label of the control.
+- Use the default delay so tooltips do not flash while the pointer moves across the screen.
+- Place it where it will not hide something related. It flips to the other side when there is no room.
+
+## Variants
+
+### Default
+
+<Canvas of={TooltipStories.Default} />
+
+### Icon-only button
+
+<Canvas of={TooltipStories.IconButton} />
+
+### Placements
+
+<Canvas of={TooltipStories.Placements} />
+
+### No delay
+
+<Canvas of={TooltipStories.NoDelay} />
+
+### Disabled control
+
+Disabled buttons do not receive focus or hover. Wrap them in a focusable element, as shown.
+
+<Canvas of={TooltipStories.OnDisabled} />
+
+## Accessibility
+
+- It appears on **hover and on keyboard focus**, and goes away on blur, on mouse leave and on **Escape**.
+- It has `role="tooltip"` and the trigger gets `aria-describedby` while it is open.
+- A tooltip is a **description**, not a name. An icon-only button still needs its own `aria-label`.
+- It never takes focus and cannot be hovered, so it must not hold actions.
+- Contrast uses the inverse surface and meets 4.5:1 in all three themes.
+
+## API
+
+<Controls of={TooltipStories.Default} />
+
+The child must be a single element that accepts a ref and mouse and focus handlers (a `Button` does).
+
+## Tokens used
+
+`--bg-inverse`, `--text-on-inverse`, `--shadow-md`, `--r-sm`, `--t-caption`.

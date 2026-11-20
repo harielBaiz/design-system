@@ -1,12 +1,31 @@
 .ds-badge {
-  display: inline-flex; align-items: center; gap: var(--space-1);
-  font: 400 12px/16px var(--f-ui); color: var(--text-3);
-  background: var(--bg-muted); border: 1px solid var(--border); border-radius: var(--r-pill);
-  padding: 2px var(--space-2); white-space: nowrap;
+  --bd-bg: var(--bg-muted); --bd-text: var(--text-2); --bd-border: var(--border);
+  display: inline-flex; align-items: center; gap: var(--space-1); vertical-align: middle;
+  font: 500 12px/16px var(--f-ui); white-space: nowrap;
+  color: var(--bd-text); background: var(--bd-bg); border: 1px solid var(--bd-border); border-radius: var(--r-pill);
+  padding: 1px var(--space-2);
 }
-.ds-badge--success { color: var(--text-success); background: var(--surface-success); border-color: var(--border-success); }
-.ds-badge--danger  { color: var(--text-danger);  background: var(--surface-danger);  border-color: var(--border-danger); }
-.ds-badge--warning { color: var(--text-warning); background: var(--surface-warning); border-color: var(--border-warning); }
-.ds-badge--info    { color: var(--text-info);    background: var(--surface-info);    border-color: var(--border-info); }
-/* overlay badge on media (e.g. "Password protected" on a case-study thumbnail) */
-.ds-badge--overlay { text-transform: uppercase; letter-spacing: .4px; font-weight: 600; font-size: 11px; color: var(--text); background: var(--surface-overlay); border-color: var(--border-mid); }
+.ds-badge__icon { display: inline-flex; flex: none; }
+
+/* types */
+.ds-badge--info     { --bd-bg: var(--surface-info);    --bd-text: var(--text-info);    --bd-border: var(--border-info); }
+.ds-badge--positive { --bd-bg: var(--surface-success); --bd-text: var(--text-success); --bd-border: var(--border-success); }
+.ds-badge--warning  { --bd-bg: var(--surface-warning); --bd-text: var(--text-warning); --bd-border: var(--border-warning); }
+.ds-badge--critical { --bd-bg: var(--surface-danger);  --bd-text: var(--text-danger);  --bd-border: var(--border-danger); }
+/* bulletin: temporary activity. Strong by default, lighter with `subtle` */
+.ds-badge--bulletin { --bd-bg: var(--control-selected-bg); --bd-text: var(--control-selected-text); --bd-border: transparent; font-weight: 600; }
+.ds-badge--bulletin.is-subtle { --bd-bg: var(--brand-tag-bg); --bd-text: var(--text); --bd-border: transparent; }
+/* ai */
+.ds-badge--ai { --bd-bg: var(--color-purple-100); --bd-text: var(--color-purple-700); --bd-border: var(--color-purple-200); }
+[data-theme="dark"] .ds-badge--ai, [data-theme="arcade"] .ds-badge--ai { --bd-bg: color-mix(in srgb, var(--color-purple-500) 22%, transparent); --bd-text: var(--color-purple-300); --bd-border: color-mix(in srgb, var(--color-purple-400) 45%, transparent); }
+/* on top of an image (e.g. “Password protected” on a case-study thumbnail) */
+.ds-badge--overlay { --bd-bg: var(--surface-overlay); --bd-text: var(--text); --bd-border: var(--border-mid); text-transform: uppercase; letter-spacing: .4px; font-weight: 600; font-size: 11px; }
+
+/* outlined */
+.ds-badge.is-outlined { background: transparent; --bd-border: currentColor; }
+.ds-badge--default.is-outlined { --bd-border: var(--border-str); }
+.ds-badge--bulletin.is-outlined { --bd-text: var(--text); --bd-border: var(--control-selected-bg); }
+
+/* count */
+.ds-badge--count { justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; font-variant-numeric: tabular-nums; font-weight: 600; }
+.ds-badge--decorated { font-weight: 600; }

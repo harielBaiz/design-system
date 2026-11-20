@@ -1,0 +1,39 @@
+.pal { font-family: var(--f-ui); color: var(--text); }
+.pal__bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 16px 0; position: sticky; top: 0; z-index: 1; padding: 8px 0; background: var(--bg); }
+.pal__seg { display: inline-flex; border: 1px solid var(--border-mid); border-radius: 999px; padding: 2px; }
+.pal__seg button { border: 0; background: transparent; color: var(--text-2); font: 500 13px/1 var(--f-ui); padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+.pal__seg button[aria-pressed="true"] { background: var(--control-selected-bg); color: var(--control-selected-text); }
+.pal__seg button:focus-visible, .pal__jump a:focus-visible, .pal-cell__btn:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.pal__hint { font-size: 13px; color: var(--text-3); }
+.pal__note { font-size: 13px; font-weight: 600; color: var(--text-success); min-height: 1em; }
+.pal__jump { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 24px; }
+.pal__jump a { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px 4px 6px; border: 1px solid var(--border-mid); border-radius: 999px; color: var(--text); font-size: 13px; text-decoration: none; }
+.pal__jump a:hover { background: var(--bg-muted); }
+.pal__jump a span { width: 16px; height: 16px; border-radius: 50%; }
+.pal__hue { margin: 0 0 28px; scroll-margin-top: 64px; }
+.pal__hue h3 { margin: 0 0 8px; font-size: 16px; display: flex; align-items: baseline; gap: 10px; }
+.pal__hue h3 code { font-size: 12px; font-weight: 400; color: var(--text-3); }
+.pal__row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.pal__row--neutral { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.pal-cell { min-width: 0; }
+.pal-cell__btn { display: flex; flex-direction: column; justify-content: space-between; width: 100%; height: 92px; padding: 10px 8px; border: 0; border-radius: 0; cursor: pointer; text-align: left; font-family: var(--f-ui); }
+.pal-cell__btn:focus-visible { outline-offset: -3px; }
+.pal-cell__step { font-size: 13px; font-weight: 700; }
+.pal-cell__val { font-size: 11px; line-height: 1.3; font-family: var(--f-mono); overflow-wrap: anywhere; }
+.pal-cell__val small { display: block; font-size: 10px; opacity: .9; }
+.pal__tablewrap { overflow-x: auto; margin: 12px 0 24px; }
+.pal__table { border-collapse: collapse; width: 100%; font-size: 14px; }
+.pal__table th, .pal__table td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+.pal__table thead th { font-size: 12px; text-transform: uppercase; letter-spacing: .4px; color: var(--text-3); }
+.pal__dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; vertical-align: -1px; }
+@media (max-width: 760px) {
+  .pal__row, .pal__row--neutral { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .pal-cell__btn { height: 76px; }
+}
+
+/* Storybook's docs styles add markers and spacing to lists, buttons and tables: reset them here */
+.pal ul, .pal li { list-style: none !important; margin: 0 !important; padding: 0 !important; }
+.pal li::marker { content: ''; }
+.pal-cell__btn { box-sizing: border-box; padding: 10px 8px !important; margin: 0 !important; }
+.pal__jump { padding: 0 !important; }
+.pal__table td, .pal__table th { background: transparent; }

@@ -1,0 +1,70 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as BreadcrumbsStories from './Breadcrumbs.stories';
+
+<Meta of={BreadcrumbsStories} />
+
+# Breadcrumbs
+
+A trail of links that shows where the current page sits and lets people go back up.
+
+<Primary />
+<Controls of={BreadcrumbsStories.Default} />
+
+## Usage
+
+### When to use
+
+- Sites and apps with **three or more levels** of pages.
+- Pages people reach from search or a shared link, where the path is not obvious.
+
+### When not to use
+
+- Flat sites with one or two levels.
+- To show steps in a process. Use a stepper.
+- As the only way to navigate. Keep the main `Nav`.
+
+### Best practices
+
+- Start with the top level and end with the **current page**. The current page is not a link.
+- Use short labels that match the page titles.
+- Show the real path, not the history of pages the person visited.
+- On long trails, collapse the middle with `maxItems`. The first item and the last stay visible.
+- Place breadcrumbs at the top of the content, above the page title.
+
+## Variants
+
+### Default
+
+<Canvas of={BreadcrumbsStories.Default} />
+
+### With an icon
+
+<Canvas of={BreadcrumbsStories.WithIcon} />
+
+### Collapsed
+
+The middle items collapse into a “…” button. Press it to show the full trail.
+
+<Canvas of={BreadcrumbsStories.Collapsed} />
+
+### Custom separator
+
+<Canvas of={BreadcrumbsStories.CustomSeparator} />
+
+## Accessibility
+
+- It is a `<nav>` with an accessible name (“Breadcrumb”) and an ordered list, so screen readers announce “list, 3 items”.
+- The last item has `aria-current="page"` and is plain text, not a link.
+- Separators are hidden from assistive technology.
+- The “…” button says how many items it reveals, for example “Show 2 more”.
+- Links have a visible focus ring and underline on hover, so they do not rely on colour.
+
+## API
+
+<Controls of={BreadcrumbsStories.Default} />
+
+Each item takes `label`, `href`, `onClick` and an optional `icon`. For client-side routing, pass an `onClick` that calls `preventDefault()` and navigates.
+
+## Tokens used
+
+`--text`, `--text-2`, `--text-3`, `--bg-muted`, `--focus-ring`, `--r-sm`, `--t-ui-md`.

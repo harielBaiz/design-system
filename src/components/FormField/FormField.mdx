@@ -1,0 +1,81 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as FormFieldStories from './FormField.stories';
+
+<Meta of={FormFieldStories} />
+
+# FormField
+
+The shared shell behind every form control. It decides how a label, supporting text, validation messages and a counter are laid out, linked and announced, so Input, Select, Checkbox, Radio and Toggle behave the same way.
+
+You rarely use it directly. Reach for it when you build a **new** control.
+
+<Canvas of={FormFieldStories.Default} />
+
+## What it gives a control
+
+- **A label tied to the control** through `htmlFor` and `id`. `hideLabel` keeps it for screen readers. The required asterisk stays in the accessible name.
+- **Supporting text and messages with one rule.** Messages replace the supporting text on screen, so the layout doesn't shift. The supporting text stays in the DOM, so screen readers read it first.
+- **One `aria-describedby`**, built by `useField().describedBy()` in a fixed order: things that qualify the value (a prefix), supporting text, message, then anything extra (a counter).
+- **One validation state.** The worst message sets it (`error`, `warning`, `success`, `info`). Every message has an icon, so colour is never the only signal.
+- **The boxed look.** `.ds-field__box` and `.ds-field__control` draw the border, sizes (`xs`–`xl`), hover, focus, disabled and read-only states. Input and Select use them.
+- **Two layouts.** `stacked` puts the label above the control. `inline` puts the control first and the label beside it (Checkbox, Radio, Toggle).
+
+## Building a control on it
+
+```tsx
+function MyControl({ description, messages, ...rest }) {
+  const f = useField({ description, messages });
+  return (
+    <FormField id={f.id} label="Label" description={description} descId={f.descId}
+               messages={messages} msgId={f.msgId} state={f.state} size="md">
+      <div className="ds-field__box">
+        <input id={f.id} className="ds-field__control" aria-describedby={f.describedBy()} {...rest} />
+      </div>
+    </FormField>
+  );
+}
+```
+
+<Canvas of={FormFieldStories.WithMessage} />
+
+## FieldGroup
+
+A `fieldset` with a `legend` for related controls. Use it for sets of Checkboxes or Toggles. `RadioGroup` builds on it with `role="radiogroup"`.
+
+- The legend is required: a group of controls needs a name.
+- Put messages about the whole set on the group, under the items. Put messages about one control on that control.
+- `disabled` on the group disables every control inside it.
+
+## Rules every control follows
+
+- Show validation only after the user has interacted with the field.
+- Never use a placeholder as the label.
+- Keep helper text short and put the format or example in it.
+- Don't rely on colour alone. Messages carry an icon.
+
+## API
+
+### FormField
+
+<Controls of={FormFieldStories.Default} />
+
+| Prop | Type | Notes |
+|---|---|---|
+| `id` | `string` | Id of the control. The label points at it. |
+| `label` | `ReactNode` | Visible label. |
+| `hideLabel` | `boolean` | Visually hidden, still announced. |
+| `required` | `boolean` | Adds the asterisk. |
+| `description`, `descId` | `string` | Supporting text and its id. |
+| `messages`, `msgId`, `state` | | From `useField`. |
+| `size` | `xs`–`xl` | Drives the boxed control's height and type. |
+| `layout` | `stacked` \| `inline` | Label above, or control first. |
+| `footerEnd` | `ReactNode` | Right side of the footer, e.g. a counter. |
+| `reserveMessageSpace` | `boolean` | Keeps one line free so messages don't shift the layout. |
+
+### FieldGroup
+
+`legend` (required), `hideLegend`, `description`, `messages`, `required`, `disabled`, `orientation` (`vertical` or `horizontal`), `role` (`group` or `radiogroup`).
+
+## Tokens used
+
+`--control-*`, `--text-{danger,warning,success,info}`, `--text-3`, `--size-100…500`, `--r-md`, `--space-*`, `--t-label-md`, `--t-caption`, `--t-ui-*`.

@@ -1,5 +1,5 @@
 import type { AnchorHTMLAttributes, ReactNode } from 'react';
-import { Chip } from '../Chip/Chip';
+import { Badge } from '../Badge/Badge';
 import './CaseRow.css';
 
 export interface CaseRowProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'title'> {
@@ -10,7 +10,7 @@ export interface CaseRowProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElemen
   imageAlt?: string;
   /** Spans two grid columns, wider 21:9 crop. */
   wide?: boolean;
-  /** Overlay slot on the image, e.g. a `<Badge tone="overlay">`. */
+  /** Overlay slot on the image, e.g. a `<Badge type="overlay">`. */
   badge?: ReactNode;
 }
 
@@ -23,7 +23,7 @@ export function CaseRow({ title, description, tags = [], imageSrc, imageAlt = ''
         {badge && <span className="ds-case__badge">{badge}</span>}
       </figure>
       <div>
-        {tags.length > 0 && <div className="ds-case__tags">{tags.map((t) => <Chip key={t}>{t}</Chip>)}</div>}
+        {tags.length > 0 && <div className="ds-case__tags">{tags.map((t) => <Badge key={t}>{t}</Badge>)}</div>}
         <h3 className="ds-case__title">{title}</h3>
         <p className="ds-case__desc">{description}</p>
       </div>

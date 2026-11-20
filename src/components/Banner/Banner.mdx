@@ -1,0 +1,66 @@
+import { Meta, Canvas, Controls, Primary } from '@storybook/addon-docs/blocks';
+import * as BannerStories from './Banner.stories';
+
+<Meta of={BannerStories} />
+
+# Banner
+
+A message about the whole page or app, shown at the very top, full width.
+
+<Primary />
+<Controls of={BannerStories.Default} />
+
+## Usage
+
+### When to use
+
+- Tell people something that affects the whole app: maintenance, an outage, a new release, an expiring trial.
+- Announce a feature with one clear action.
+
+### When not to use
+
+- For a message about one form or one section. Use `Notice`.
+- For feedback after an action (“Saved”). Use `Toast`.
+- For something that needs an answer before going on. Use `Modal`.
+
+### Best practices
+
+- Show **one** banner at a time. If you have more, show the most urgent.
+- Keep the message to one or two lines. Start with a short bold title when it helps.
+- Add at most **one** action.
+- Let people dismiss anything that is not blocking. Remember their choice.
+- Place it above the header and push the page down. Do not cover content.
+
+## Variants
+
+### Tones
+
+<Canvas of={BannerStories.Tones} />
+
+### With an action
+
+<Canvas of={BannerStories.WithAction} />
+
+### Dismissible
+
+<Canvas of={BannerStories.Dismissible} />
+
+### Without an icon
+
+<Canvas of={BannerStories.NoIcon} />
+
+## Accessibility
+
+- `warning` and `danger` banners use `role="alert"` so they are announced right away. Other tones use `role="status"`.
+- The close button has an accessible name (“Dismiss”). Change it with `dismissLabel` for other languages.
+- The icon is decorative. The text and the role carry the meaning, not the colour.
+- Text stays at body size and meets 4.5:1 contrast on every tone and theme.
+- Do not auto-hide a banner. People need time to read it.
+
+## API
+
+<Controls of={BannerStories.Default} />
+
+## Tokens used
+
+`--surface-{info,success,warning,danger}`, `--border-{info,success,warning,danger}`, `--bg-inverse`, `--text-on-inverse`, `--focus-ring`, `--t-ui-md`.

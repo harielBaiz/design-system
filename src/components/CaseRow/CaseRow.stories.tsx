@@ -11,5 +11,5 @@ const meta: Meta<typeof CaseRow> = {
 export default meta;
 type Story = StoryObj<typeof CaseRow>;
 export const Default: Story = {};
-export const Locked: Story = { args: { badge: <Badge tone="overlay"><Icon name="lock" size={12} /> Protected</Badge> } };
+export const Locked: Story = { args: { badge: <Badge type="overlay" startIcon="lock">Protected</Badge> } };
 export const Wide: Story = { args: { wide: true }, decorators: [(S) => <div style={{ width: 900 }}><S /></div>] };

@@ -1,0 +1,24 @@
+.ds-scroller { position: relative; min-width: 0; }
+.ds-scroller__viewport {
+  --fs: 0px; --fe: 0px; overflow: auto; scrollbar-width: thin; scrollbar-color: var(--border-str) transparent; overscroll-behavior: contain;
+}
+.ds-scroller--vertical .ds-scroller__viewport { overflow-x: hidden; }
+.ds-scroller--horizontal .ds-scroller__viewport { overflow-y: hidden; display: flex; gap: var(--space-3); scroll-snap-type: x proximity; }
+.ds-scroller--horizontal .ds-scroller__viewport > * { flex: none; scroll-snap-align: start; }
+.ds-scroller__viewport:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-radius: var(--r-sm); }
+.ds-scroller__viewport::-webkit-scrollbar { width: 8px; height: 8px; }
+.ds-scroller__viewport::-webkit-scrollbar-thumb { background: var(--border-str); border-radius: var(--r-pill); }
+.ds-scroller__viewport::-webkit-scrollbar-track { background: transparent; }
+/* edge fades */
+.ds-scroller--vertical .has-fade { --fd: 28px; mask-image: linear-gradient(to bottom, transparent 0, #000 var(--fs), #000 calc(100% - var(--fe)), transparent 100%); }
+.ds-scroller--horizontal .has-fade { --fd: 40px; mask-image: linear-gradient(to right, transparent 0, #000 var(--fs), #000 calc(100% - var(--fe)), transparent 100%); }
+.has-fade:not(.at-start) { --fs: var(--fd); }
+.has-fade:not(.at-end) { --fe: var(--fd); }
+.ds-scroller__btn {
+  position: absolute; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; padding: 0; border: 1px solid var(--border-mid); border-radius: 50%;
+  background: var(--surface-card); color: var(--text); box-shadow: var(--shadow-md); cursor: pointer;
+}
+.ds-scroller__btn[hidden] { display: none; }
+.ds-scroller__btn:hover { background: var(--bg-muted); }
+.ds-scroller__btn--prev { left: var(--space-1); } .ds-scroller__btn--next { right: var(--space-1); }
