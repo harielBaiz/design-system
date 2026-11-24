@@ -22,6 +22,13 @@
   --surface-info:    #1d1238;  --border-info:    #7a5fc4;  --text-info:    #c9b8ff;
   --control-border-success: #2de2c9;  --control-border-danger: #ff4d8d;  --control-border-warning: #ffb000;
 
+  /* Badges: status colours come from the green and red palette scales, tinted over the purple surfaces */
+  --badge-info-bg:     color-mix(in srgb, #7a5fc4 24%, transparent); --badge-info-text: #c9b8ff; --badge-info-border: #7a5fc4;
+  --badge-positive-bg: color-mix(in srgb, var(--color-green-500) 20%, transparent); --badge-positive-text: var(--color-green-300); --badge-positive-border: var(--color-green-600);
+  --badge-warning-bg:  color-mix(in srgb, #ffb000 18%, transparent); --badge-warning-text: #ffb000; --badge-warning-border: #a8760a;
+  --badge-critical-bg: color-mix(in srgb, var(--color-red-500) 20%, transparent);   --badge-critical-text: var(--color-red-300);   --badge-critical-border: var(--color-red-600);
+  --badge-ai-bg:       color-mix(in srgb, var(--color-purple-500) 26%, transparent); --badge-ai-text: var(--color-purple-300); --badge-ai-border: color-mix(in srgb, var(--color-purple-400) 55%, transparent);
+
   --control-bg: #120a26;  --control-bg-disabled: #1d1238;  --control-border: #4b2f8a;  --control-border-hover: #7a5fc4;  --control-border-focus: #2de2c9;
   --control-text: #f4ecff;  --control-placeholder: #a89bc7;  --control-text-disabled: #7d6fa0;
   --control-selected-bg: var(--brand-fill);  --control-selected-bg-hover: var(--brand-fill-hover);  --control-selected-text: var(--text-on-inverse);

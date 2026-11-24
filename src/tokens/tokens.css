@@ -38,8 +38,9 @@
   --n-950-opacity: #1717179f;
 
   /* Status scales (-50 surface · -100 border · -300 dark text · -500 identity · -600 light text · -800 dark border · -950 dark surface) */
-  --success-50: #f0faf5; --success-100: #b8e4cc; --success-300: #80d8a8; --success-500: #2a8f61; --success-600: #1a6a48; --success-800: #1d4a30; --success-950: #0d1f15;
-  --danger-50:  #fdf5f2; --danger-100:  #f5d0c5; --danger-300:  #f5a080; --danger-500:  #a8461c; --danger-600:  #7a3010; --danger-800:  #4a2010; --danger-950:  #1f0f0a;
+  /* success and danger come from the green and red palette scales (palette.css). Slots keep their old names. */
+  --success-50: var(--color-green-50); --success-100: var(--color-green-200); --success-300: var(--color-green-300); --success-500: var(--color-green-600); --success-600: var(--color-green-700); --success-800: var(--color-green-800); --success-950: var(--color-green-950);
+  --danger-50:  var(--color-red-50);   --danger-100:  var(--color-red-200);   --danger-300:  var(--color-red-300);   --danger-500:  var(--color-red-600);   --danger-600:  var(--color-red-700);   --danger-800:  var(--color-red-800);   --danger-950:  var(--color-red-950);
   --warning-50: #fdf8ec; --warning-100: #f5e3b0; --warning-300: #e8c874; --warning-500: #e3a72a; --warning-600: #9a6e12; --warning-800: #4a3410; --warning-950: #1f1708;
   --info-50:    #f0f3fe; --info-100:    #ccd6fb; --info-300:    #8ca0ff; --info-500:    #3350f0; --info-600:    #1e2fc2; --info-800:    #1e2a6a; --info-950:    #0d1230;
 }
@@ -88,6 +89,13 @@
   --surface-danger:  var(--danger-50);   --border-danger:  var(--danger-100);   --text-danger:  var(--danger-600);
   --surface-warning: var(--warning-50);  --border-warning: var(--warning-100);  --text-warning: var(--warning-600);
   --surface-info:    var(--info-50);     --border-info:    var(--info-100);     --text-info:    var(--info-600);
+
+  /* Badge status colours (soft fill, readable text, quiet border) */
+  --badge-info-bg:     var(--info-50);       --badge-info-text:     var(--info-600);       --badge-info-border:     var(--info-100);
+  --badge-positive-bg: var(--color-green-50); --badge-positive-text: var(--color-green-700); --badge-positive-border: var(--color-green-200);
+  --badge-warning-bg:  var(--warning-50);    --badge-warning-text:  var(--warning-600);    --badge-warning-border:  var(--warning-100);
+  --badge-critical-bg: var(--color-red-50);   --badge-critical-text: var(--color-red-700);   --badge-critical-border: var(--color-red-200);
+  --badge-ai-bg:       var(--color-purple-100); --badge-ai-text:     var(--color-purple-700); --badge-ai-border:     var(--color-purple-200);
   /* Status control borders (inputs): need ≥3:1 against the page */
   --control-border-success: var(--success-500);
   --control-border-danger:  var(--danger-500);
@@ -146,6 +154,13 @@
   --surface-danger:  var(--danger-950);  --border-danger:  var(--danger-800);  --text-danger:  var(--danger-300);
   --surface-warning: var(--warning-950); --border-warning: var(--warning-800); --text-warning: var(--warning-300);
   --surface-info:    var(--info-950);    --border-info:    var(--info-800);    --text-info:    var(--info-300);
+
+  /* Badge status colours */
+  --badge-info-bg:     var(--info-950);      --badge-info-text:     var(--info-300);       --badge-info-border:     var(--info-800);
+  --badge-positive-bg: var(--color-green-950); --badge-positive-text: var(--color-green-300); --badge-positive-border: var(--color-green-700);
+  --badge-warning-bg:  var(--warning-950);   --badge-warning-text:  var(--warning-300);    --badge-warning-border:  var(--warning-800);
+  --badge-critical-bg: var(--color-red-950);  --badge-critical-text: var(--color-red-300);   --badge-critical-border: var(--color-red-700);
+  --badge-ai-bg:       color-mix(in srgb, var(--color-purple-500) 22%, transparent); --badge-ai-text: var(--color-purple-300); --badge-ai-border: color-mix(in srgb, var(--color-purple-400) 45%, transparent);
   --control-border-success: var(--success-300);
   --control-border-danger:  var(--danger-300);
   --control-border-warning: var(--warning-300);

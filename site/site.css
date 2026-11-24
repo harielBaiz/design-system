@@ -162,11 +162,10 @@ html { scroll-padding-top: calc(var(--dx-header-h) + 16px); }
 .dd-practice { margin-top: var(--space-8); }
 .dd-pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
 .dd { margin: 0; padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; background: var(--bg-subtle); border: 1.5px solid var(--border-mid); border-radius: var(--r-lg); }
-.dd--do { border-color: var(--text-success); }
-.dd--dont { border-color: var(--text-danger); }
-.dd__badge { align-self: flex-start; font-weight: 600; color: #fff; border-color: transparent; }
-.dd--do .dd__badge { background: var(--success-600); }
-.dd--dont .dd__badge { background: var(--danger-600); }
+.dd--do { --dd-accent: var(--text-success); --dd-on: var(--surface-success); border-color: var(--dd-accent); }
+.dd--dont { --dd-accent: var(--text-danger); --dd-on: var(--surface-danger); border-color: var(--dd-accent); }
+/* the label is filled with the card's border colour, in every theme, and its text takes the soft surface colour for contrast */
+.dd__badge { align-self: flex-start; font-weight: 600; color: var(--dd-on); background: var(--dd-accent); border-color: var(--dd-accent); }
 .dd__example { display: flex; align-items: center; min-height: 112px; padding: var(--space-5, 20px); overflow: hidden; background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-md); }
 .dd__example > .ds-notice, .dd__example > .ds-banner, .dd__example > .ds-field, .dd__example > .ds-empty, .dd__example > .dd-code, .dd__example > .ds-toast, .dd__example > .ds-chat { width: 100%; }
 .dd__caption { font: var(--t-ui-md); color: var(--text-2); }

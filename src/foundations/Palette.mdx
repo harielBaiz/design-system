@@ -68,4 +68,4 @@ node scripts/generate-palette.mjs
 
 This writes `src/tokens/palette.css` (the variables) and `src/tokens/palette.ts` (the same values for docs and tools). To add a hue or change a step, edit the script and run it again. Do not edit the generated files by hand.
 
-The existing status scales (`--success-*`, `--danger-*`, `--warning-*`, `--info-*`) and the neutral scale (`--n-*`) are unchanged.
+The success and danger scales (`--success-*`, `--danger-*`) are built from the green and red palette scales, so status colour and palette colour never drift apart. The warning and info scales and the neutral scale (`--n-*`) keep their own values.
