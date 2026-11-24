@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import type { IconName } from '../src';
 
-/** TODO: replace with the deployed Storybook URL (planned: https://design.harielbaiz.com). */
-/** Local while developing (npm run storybook). Replace with the published URL once Storybook is deployed. */
-export const STORYBOOK_URL = 'http://localhost:6006';
+/** In development, Storybook runs on port 6006. Published, it sits in a `storybook/` folder next to the site (see .github/workflows/pages.yml). */
+export const STORYBOOK_URL = import.meta.env.DEV ? 'http://localhost:6006' : 'storybook/';
 export const GITHUB_URL = 'https://github.com/harielBaiz/design-system';
 export const LAB_URL = 'https://harielbaiz.com/lab.html';
 
