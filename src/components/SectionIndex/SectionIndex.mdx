@@ -1,0 +1,72 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as SectionIndexStories from './SectionIndex.stories';
+
+<Meta of={SectionIndexStories} />
+
+# SectionIndex
+
+A list of links to the sections of a long page. The link for the section being read is marked, so people always know where they are.
+
+<Canvas of={SectionIndexStories.Inline} />
+
+## Usage
+
+### When to use
+
+- Long pages with three or more sections: case studies, guides, documentation.
+- When people scan before they read and need to jump back and forth.
+
+### When not to use
+
+- Short pages. A list of links adds noise.
+- To move between different pages. Use `Breadcrumbs` or a navigation bar.
+- For steps that must be done in order. Use a stepper.
+
+### Best practices
+
+- Use **short labels**, one to three words. They are uppercase and truncate.
+- Keep the list to **eight items or fewer**. More than that and the rail becomes a second page.
+- Make labels match the section headings so the two always agree.
+- Give each section a stable `id`. The index finds sections by id.
+
+## Placement
+
+### Inline
+
+Sits in the flow of the page, for example in a sidebar or a sticky column.
+
+<Canvas of={SectionIndexStories.Inline} />
+
+### Rail
+
+Floats in the left margin. It stays out of the way until it is needed:
+
+- `revealAfter`: show it once an element (for example the hero subtitle) has scrolled out of view.
+- `hideOver`: hide it while another element (for example the footer) reaches the middle of the screen.
+
+The items slide in one after another. The rail is hidden below 1280px wide, where it would overlap the content.
+
+<Canvas of={SectionIndexStories.Rail} />
+
+## Behaviour
+
+- The current section is the one whose top is in the upper quarter of the screen. Change this with `rootMargin`.
+- Clicking a link scrolls smoothly (instantly when the person prefers reduced motion) and moves focus to the section.
+- Links call `preventDefault`, so the index also works on pages that use the URL hash for routing.
+
+## Accessibility
+
+- It renders a `nav` with a list. Give it an `aria-label` that says what it is for, such as “Case study sections”.
+- The current link has `aria-current="location"`. It is also bolder and has a coloured edge, so colour is not the only signal.
+- Focus moves to the section after a jump, so keyboard and screen reader users continue from there.
+- Motion respects `prefers-reduced-motion`: no slide, no stagger.
+
+## API
+
+<Controls of={SectionIndexStories.Inline} />
+
+`items` is a list of `{ id, label }`. Other props are forwarded to the `nav`.
+
+## Tokens used
+
+`--text`, `--text-3`, `--border`, `--border-str`, `--brand`, `--focus-ring`, `--t-caption`, `--dur-*`, `--ease-out`.

@@ -9,8 +9,8 @@
 .ds-toast {
   --tt-accent: var(--text-3);
   display: flex; align-items: flex-start; gap: var(--space-3); padding: var(--space-3) var(--space-4);
-  background: var(--surface-card); color: var(--text); border: 1px solid var(--border-mid); border-left: 4px solid var(--tt-accent);
-  border-radius: var(--r-md); box-shadow: var(--shadow-lg); font: var(--t-ui-md);
+  background: var(--surface-raised); color: var(--text); border: 1px solid var(--border-mid); border-left: 4px solid var(--tt-accent);
+  border-radius: var(--r-md); font: var(--t-ui-md);
 }
 .ds-toast--info { --tt-accent: var(--text-info); } .ds-toast--success { --tt-accent: var(--text-success); }
 .ds-toast--warning { --tt-accent: var(--text-warning); } .ds-toast--danger { --tt-accent: var(--text-danger); }

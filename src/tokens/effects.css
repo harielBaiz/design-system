@@ -1,14 +1,10 @@
 /*
- * Effects tokens: elevation, scrim and motion.
- * Not themed except shadows, which get stronger on dark surfaces.
+ * Effects tokens: scrim and motion. Elevation has no tokens here: it is colour only.
+ * A surface above another is lighter (--surface-raised) and separated by a 1px border. No shadows.
  * Floating UI (Modal, Popover, Dropdown, Tooltip, Toast) is rendered in the browser's
  * top layer, so there is no z-index scale to maintain.
  */
 :root {
-  /* elevation */
-  --shadow-sm: 0 1px 2px rgba(10,10,10,.08), 0 1px 1px rgba(10,10,10,.04);
-  --shadow-md: 0 4px 12px rgba(10,10,10,.10), 0 1px 3px rgba(10,10,10,.06);
-  --shadow-lg: 0 12px 32px rgba(10,10,10,.16), 0 2px 6px rgba(10,10,10,.08);
   --overlay-scrim: rgba(10,10,10,.5);
 
   /* motion */
@@ -18,11 +14,34 @@
   --dur-base: 200ms;
   --dur-slow: 320ms;
 }
-[data-theme="dark"], [data-theme="arcade"] {
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.45), 0 1px 3px rgba(0,0,0,.3);
-  --shadow-lg: 0 12px 32px rgba(0,0,0,.55), 0 2px 6px rgba(0,0,0,.35);
+[data-theme="dark"] {
   --overlay-scrim: rgba(0,0,0,.65);
+}
+
+/*
+ * Arcade is the exception to the no-shadow rule: floating surfaces get a dithered edge, a pixel-style
+ * checkerboard of dots on the lower-left, instead of a blurred shadow.
+ * A CSS box-shadow cannot hold a pattern, so the shadow is a pseudo-element filled with a
+ * checker mask and clipped to the L-shape outside the surface.
+ */
+[data-theme="arcade"] {
+  --overlay-scrim: rgba(0,0,0,.65);
+  --dither-offset: 6px;
+  --dither-color: var(--text-3);
+  /* one dot in every 2x2 block (25% fill). For the dense checker, use two dots per 2x2 block. */
+  --dither-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 2' shape-rendering='crispEdges'%3E%3Crect width='1' height='1'/%3E%3C/svg%3E");
+}
+[data-theme="arcade"] :is(.ds-modal, .ds-popover--card, .ds-toast, .ds-tooltip, .ds-drawer--bottom-end, .ds-drawer--bottom-start) { isolation: isolate; overflow: visible; }
+[data-theme="arcade"] :is(.ds-toast, .ds-tooltip) { position: relative; }
+[data-theme="arcade"] .ds-modal__panel { overflow: hidden; border-radius: inherit; }
+[data-theme="arcade"] :is(.ds-modal, .ds-popover--card, .ds-toast, .ds-tooltip, .ds-drawer--bottom-end, .ds-drawer--bottom-start)::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  inset: var(--dither-offset) var(--dither-offset) calc(var(--dither-offset) * -1) calc(var(--dither-offset) * -1);
+  background: var(--dither-color);
+  -webkit-mask: var(--dither-mask) 0 0 / 2px 2px; mask: var(--dither-mask) 0 0 / 2px 2px;
+  image-rendering: pixelated;
+  /* keep only the strip outside the surface (left and bottom) */
+  clip-path: polygon(0 0, var(--dither-offset) 0, var(--dither-offset) calc(100% - var(--dither-offset)), 100% calc(100% - var(--dither-offset)), 100% 100%, 0 100%);
 }
 @media (prefers-reduced-motion: reduce) {
   :root { --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; }

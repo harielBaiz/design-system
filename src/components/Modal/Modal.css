@@ -1,6 +1,6 @@
 .ds-modal {
   padding: 0; border: 1px solid var(--border-mid); border-radius: var(--r-lg);
-  background: var(--surface-card); color: var(--text); box-shadow: var(--shadow-lg);
+  background: var(--surface-raised); color: var(--text);
   width: min(var(--md-w, 520px), calc(100vw - 32px)); max-height: min(calc(100vh - 64px), 720px); overflow: hidden;
 }
 .ds-modal--sm { --md-w: 400px; } .ds-modal--lg { --md-w: 720px; }

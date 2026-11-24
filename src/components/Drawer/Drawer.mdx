@@ -1,0 +1,75 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as DrawerStories from './Drawer.stories';
+
+<Meta of={DrawerStories} />
+
+# Drawer
+
+A panel that opens from a corner or an edge of the screen. It keeps its content while closed, so a conversation or a half-filled form is still there when it reopens.
+
+<Canvas of={DrawerStories.Default} />
+
+## Usage
+
+### When to use
+
+- A **chat or help window** the person opens next to their work.
+- A **side sheet** for settings, filters or details that belong to the page behind it.
+- Secondary content that should not take people away from where they are.
+
+### When not to use
+
+- For a decision that must be answered before going on. Use `Modal`.
+- For a short message or confirmation. Use `Toast` or `Notice`.
+- For a small menu or hint tied to one control. Use `Popover`, `Dropdown` or `Tooltip`.
+
+### Best practices
+
+- Give it a **clear title**. It names the dialog for screen readers.
+- Keep the opener **visible** while the drawer is open, so people know how to find it again.
+- Use a corner drawer for **ongoing tasks** (chat) and an edge sheet for **settings or detail**.
+- Put the main control (a message field, a Save button) in the `footer`, so it stays in view while the body scrolls.
+- Do not stack drawers. If you need a second layer, rethink the flow.
+
+## Placement
+
+Corner drawers float and leave the page usable. Edge sheets run the full height of the screen.
+
+<Canvas of={DrawerStories.Placements} />
+
+## Modal
+
+By default the page behind a drawer stays usable: you can scroll and click outside it. Set `modal` to block the page. It dims the background, traps focus, and closes on a click outside.
+
+<Canvas of={DrawerStories.Modal} />
+
+## Actions and footer
+
+`actions` adds buttons to the header next to Close. `footer` pins content under the scrolling body.
+
+<Canvas of={DrawerStories.WithActionsAndFooter} />
+
+## Behaviour
+
+- It opens in the browser top layer, so it is never hidden by other elements and needs no z-index.
+- The body scrolls on its own. The header and footer stay in place.
+- On small screens, corner drawers stretch across the bottom with an 8px margin.
+- Content stays mounted while the drawer is closed.
+
+## Accessibility
+
+- It has `role="dialog"` and is labelled by its title (and described by its description).
+- Focus moves into the drawer when it opens: to `initialFocusRef`, else the first control in the body or footer, else the close button. When it closes, focus returns to the element that opened it.
+- **Escape** closes it. A modal drawer also traps focus and makes the page behind inert, using the native `<dialog>`.
+- The close button has an accessible name. Change it with `closeLabel`.
+- Motion is removed when the person prefers reduced motion.
+
+## API
+
+<Controls of={DrawerStories.Default} />
+
+Other props are forwarded to the panel element.
+
+## Tokens used
+
+`--surface-raised`, `--border-mid`, `--border`, `--surface-raised`, `--overlay-scrim`, `--r-lg`, `--space-*`, `--dur-base`, `--ease-out`, `--focus-ring`.

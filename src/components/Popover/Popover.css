@@ -5,8 +5,7 @@
   background: transparent; color: var(--text);
 }
 .ds-popover--card {
-  background: var(--surface-card); border: 1px solid var(--border-mid); border-radius: var(--r-md);
-  box-shadow: var(--shadow-lg);
+  background: var(--surface-raised); border: 1px solid var(--border-mid); border-radius: var(--r-md);
 }
 .ds-popover:popover-open { animation: ds-pop-in var(--dur-base) var(--ease-out); }
 .ds-popover[data-side="top"]:popover-open { --ds-pop-y: 4px; }

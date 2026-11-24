@@ -1,0 +1,31 @@
+.ds-secindex ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.ds-secindex a {
+  display: block; font: var(--t-caption); letter-spacing: .03em; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; color: var(--text-3);
+  padding: 2px 0 2px var(--space-3); border-left: 2px solid var(--border);
+  transition: color var(--dur-fast), border-color var(--dur-fast);
+}
+.ds-secindex a:hover { color: var(--text); border-left-color: var(--border-str); }
+.ds-secindex a.is-active { color: var(--text); font-weight: 600; border-left-color: var(--brand); }
+.ds-secindex a:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+/* rail: floats in the left margin and slides in when needed */
+.ds-secindex--rail {
+  position: fixed; top: 50%; left: 3rem; width: 150px; z-index: 5;
+  opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(calc(-50% - 24px));
+  transition: opacity var(--dur-slow) var(--ease-out), visibility var(--dur-slow), transform calc(var(--dur-slow) * 2) var(--ease-out);
+}
+.ds-secindex--rail.is-visible { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(-50%); }
+.ds-secindex--rail.is-visible.is-over-footer { opacity: 0; visibility: hidden; pointer-events: none; }
+/* items follow one after another */
+.ds-secindex--rail li { opacity: 0; transform: translateY(-10px); transition: opacity var(--dur-base), transform var(--dur-base); }
+.ds-secindex--rail.is-visible li {
+  opacity: 1; transform: none; transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms + 120ms);
+}
+/* too narrow to sit clear of the content column */
+@media (max-width: 1280px) { .ds-secindex--rail { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .ds-secindex--rail { transform: translateY(-50%); }
+  .ds-secindex--rail li, .ds-secindex--rail.is-visible li { transform: none; opacity: 1; transition-delay: 0s; }
+}

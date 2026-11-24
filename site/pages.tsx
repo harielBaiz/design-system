@@ -1,7 +1,7 @@
 import type { ReactElement, ReactNode } from 'react';
 import { Overview, Why, Architecture, Decisions } from './pagesIntro';
 import { ColorOverview, ColorPalette, ColorProduct, Typography, Spacing, Effects } from './pagesFoundations';
-import { ActionsPage, FormsPage, ContentPage, DisplayPage, FeedbackPage, OverlaysPage, ChatPage } from './pagesComponents';
+import { ActionsPage, FormsPage, ContentPage, DisplayPage, FeedbackPage, OverlaysPage, ChatPage, AskAssistantPage } from './pagesComponents';
 
 export interface PageDef {
   title: string;
@@ -29,5 +29,6 @@ export const PAGES: Record<string, PageDef> = {
   '/components/display': { title: 'Display', lead: 'People, loading states, progress and empty states.', Component: DisplayPage, related: ['/components/content', '/components/feedback'] },
   '/components/feedback': { title: 'Feedback', lead: 'Messages at three scales: the whole app, a section and a moment.', Component: FeedbackPage, related: ['/components/overlays', '/components/display'] },
   '/components/overlays': { title: 'Overlays', lead: 'Dialogs, menus, tooltips and pickers, rendered in the browser top layer.', Component: OverlaysPage, related: ['/components/feedback', '/foundations/effects'] },
+  '/patterns/ask-assistant': { title: 'Ask assistant', lead: 'A chat window that answers questions without taking people off the page.', Component: AskAssistantPage, related: ['/components/chat', '/components/overlays'] },
   '/components/chat': { title: 'Chat', lead: 'The pieces the AI agent is built from.', Component: ChatPage, related: ['/components/forms', '/components/content'] },
 };

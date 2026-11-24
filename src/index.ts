@@ -53,3 +53,5 @@ export { Skeleton, type SkeletonProps } from './components/Skeleton/Skeleton';
 export { Scroller, type ScrollerProps } from './components/Scroller/Scroller';
 export { MotionText, type MotionTextProps, type MotionEffect } from './components/MotionText/MotionText';
 export { Toast, ToastProvider, useToast, type ToastProps, type ToastOptions, type ToastTone, type ToastProviderProps } from './components/Toast/Toast';
+export { SectionIndex, type SectionIndexProps, type SectionIndexItem } from './components/SectionIndex/SectionIndex';
+export { Drawer, type DrawerProps, type DrawerPlacement } from './components/Drawer/Drawer';

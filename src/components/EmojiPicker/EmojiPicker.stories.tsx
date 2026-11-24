@@ -18,7 +18,7 @@ type Story = StoryObj<typeof EmojiPicker>;
 
 export const Default: Story = {
   render: (args) => (
-    <div style={{ border: '1px solid var(--border-mid)', borderRadius: 12, boxShadow: 'var(--shadow-md)' }}><EmojiPicker {...args} /></div>
+    <div style={{ border: '1px solid var(--border-mid)', borderRadius: 12 }}><EmojiPicker {...args} /></div>
   ),
 };
 export const WithRecent: Story = {

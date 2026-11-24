@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import type { IconName } from '../src';
 
 /** TODO: replace with the deployed Storybook URL (planned: https://design.harielbaiz.com). */
-export const STORYBOOK_URL = '#storybook-link-coming-soon';
+/** Local while developing (npm run storybook). Replace with the published URL once Storybook is deployed. */
+export const STORYBOOK_URL = 'http://localhost:6006';
 export const GITHUB_URL = 'https://github.com/harielBaiz/design-system';
 export const LAB_URL = 'https://harielbaiz.com/lab.html';
 
@@ -47,6 +48,12 @@ export const NAV: NavNode[] = [
       { title: 'Feedback', path: '/components/feedback' },
       { title: 'Overlays', path: '/components/overlays' },
       { title: 'Chat', path: '/components/chat' },
+    ],
+  },
+  {
+    title: 'Patterns',
+    children: [
+      { title: 'Ask assistant', path: '/patterns/ask-assistant' },
     ],
   },
   {

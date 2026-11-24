@@ -1,0 +1,55 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as AskStories from './AskAssistant.stories';
+
+<Meta of={AskStories} />
+
+# Ask assistant
+
+A chat window that answers questions about your work without taking people off the page. It is a **pattern**: a recipe made from existing components, not a component of its own.
+
+<Canvas of={AskStories.Default} />
+
+## What it is made of
+
+## Parts
+
+- **Launcher**: a `Button` with an icon. It carries `aria-expanded` so its state is announced.
+- **Window**: a non-modal `Drawer` docked bottom-right. It keeps the conversation while closed.
+- **Messages**: `ChatMessage` for each turn, in a `role="log"` region so new answers are announced.
+- **Input**: `ChatComposer` in the drawer footer, with suggested prompts until the first message.
+
+## When to use
+
+- You want visitors to ask questions in their own words, next to what they are reading.
+- The answers are short and the person may want to go back to the page between questions.
+
+## When not to use
+
+- For a flow that must be finished before moving on. Use a `Modal`.
+- For one-off help text. Use a `Tooltip` or `Notice`.
+
+## Best practices
+
+- Say what it knows. The title and description set expectations: “Answers come from my case studies.”
+- Offer **suggested prompts** so the first message is one click.
+- Keep the page usable. A chat is non-modal, so people can scroll and read while it is open.
+- Show a **pending** state while the agent works, and a clear **error** with a way to retry.
+- Keep the composer in the footer, so it never scrolls away.
+- Let people start over with an action in the header.
+
+## States
+
+Open the demo and type “fail” to see the error state.
+
+<Canvas of={AskStories.Open} />
+
+## Accessibility
+
+- The log is `role="log"` with `aria-live="polite"`, so answers are announced without interrupting.
+- Focus moves into the chat when it opens and returns to the launcher when it closes. Escape closes it.
+- The launcher says whether the window is open (`aria-expanded`).
+- Errors use `role="alert"` through `ChatMessage`.
+
+## Where it comes from
+
+This pattern is the assistant on harielbaiz.com. Its original markup and styles used plain CSS classes. Here they are rebuilt from design system parts, so the same recipe works in any theme.

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Button, Breadcrumbs, Icon, Input } from '../src';
-import { NAV, GITHUB_URL, LAB_URL, findTrail, firstPath, href, leaves, type NavNode } from './nav';
+import { NAV, STORYBOOK_URL, GITHUB_URL, LAB_URL, findTrail, firstPath, href, leaves, type NavNode } from './nav';
 import { THEMES, type Theme } from './theme';
 import { PAGES } from './pages';
 import { Cards } from './ui';
@@ -160,6 +160,7 @@ export function Shell({ route, theme, setTheme, onCopy }: { route: string; theme
         <a className="dx-brand" href={href('/')}><span className="dx-brand__mark" aria-hidden="true"><Icon name="sparkles" size={14} /></span>Design System<span className="dx-brand__by">H. Ariel Baiz</span></a>
         <div className="dx-header__right">
           <a className="dx-header__link" href={LAB_URL}>Lab</a>
+          <a className="dx-header__link" href={STORYBOOK_URL} target="_blank" rel="noopener noreferrer">Storybook</a>
           <a className="dx-header__link" href={GITHUB_URL} target="_blank" rel="noopener noreferrer">GitHub</a>
           <div className="site-theme" role="group" aria-label="Theme">
             {THEMES.map((t) => (

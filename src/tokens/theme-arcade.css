@@ -6,7 +6,7 @@
  */
 [data-theme="arcade"] {
   --bg: #1a1030;          --bg-subtle: #251845;   --bg-muted: #1d1238;   --bg-inverse: #ffb000;
-  --surface-card: #251845; --surface-card-inverse: #4a3510; --surface-overlay: rgba(26,16,48,.95); --surface-feature: #251845;
+  --surface-card: #251845; --surface-raised: #2e2054; --surface-card-inverse: #4a3510; --surface-overlay: rgba(26,16,48,.95); --surface-feature: #251845;
 
   --text: #f4ecff;  --text-2: #d6c9f0;  --text-3: #a89bc7;
   --text-on-inverse: #1a1030;  --text-on-inverse-2: #4a3510;
@@ -27,4 +27,15 @@
   --control-selected-bg: var(--brand-fill);  --control-selected-bg-hover: var(--brand-fill-hover);  --control-selected-text: var(--text-on-inverse);
 
   --r-sm: 0; --r-md: 0; --r-lg: 0;   /* square pixel corners */
+
+  /* Display and heading scales use DM Mono here (500 is its heaviest loaded weight). Body and UI text keep their families.
+     The composite tokens are repeated so the font also applies when data-theme is set on a subtree. */
+  --f-display: 'DM Mono', ui-monospace, monospace;
+  --t-display-2xl: 500 72px/80px var(--f-display);
+  --t-display-xl:  500 56px/64px var(--f-display);
+  --t-display-lg:  500 40px/48px var(--f-display);
+  --t-heading-xl:  500 32px/40px var(--f-display);
+  --t-heading-lg:  500 24px/32px var(--f-display);
+  --t-heading-md:  500 20px/28px var(--f-display);
+  --t-heading-sm:  500 18px/26px var(--f-display);
 }

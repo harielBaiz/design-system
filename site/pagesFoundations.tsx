@@ -199,10 +199,21 @@ export function Effects() {
   return (
     <>
       <H2>Elevation</H2>
-      <P>Three shadows for raised surfaces. Menus, dialogs and toasts use the larger ones. Overlays render in the browser top layer, so there is no z-index scale.</P>
-      <div className="dx-shadows">
-        {['sm', 'md', 'lg'].map((s) => <div key={s} className="dx-shadow" style={{ boxShadow: `var(--shadow-${s})` }}><code>--shadow-{s}</code></div>)}
+      <P>Elevation is shown with colour only. <strong>A surface above another surface is lighter, never darker</strong>, and a 1px border separates them. There are no shadows. Overlays render in the browser top layer, so there is no z-index scale.</P>
+      <div className="dx-elev">
+        <div className="dx-elev__box dx-elev__box--base"><strong>Base</strong><span>The page.</span><code>--bg-subtle</code></div>
+        <div className="dx-elev__box dx-elev__box--raised"><strong>Raised</strong><span>Cards and panels in the page. Quiet border.</span><code>--surface-raised</code> <code>--border</code></div>
+        <div className="dx-elev__box dx-elev__box--floating"><strong>Floating</strong><span>Menus, dialogs, drawers, toasts. Stronger border.</span><code>--surface-raised</code> <code>--border-mid</code></div>
       </div>
+      <Note>The arcade theme is the one exception. Floating surfaces there get a dithered, pixel-style edge instead of a blurred shadow.</Note>
+      <BestPractice title="Show height with lightness, not shadow" text="Each step up is lighter than the one below. A shadow adds nothing the colour does not already say.">
+        <DoDont kind="do" caption="The menu is lighter than the page and has a border.">
+          <div style={{ background: 'var(--bg-subtle)', padding: 12, borderRadius: 8 }}><div style={{ background: 'var(--surface-raised)', border: '1px solid var(--border-mid)', borderRadius: 8, padding: '8px 12px' }}>Edit · Copy link</div></div>
+        </DoDont>
+        <DoDont kind="dont" caption="A surface darker than the page looks sunken, not raised.">
+          <div style={{ background: 'var(--bg-subtle)', padding: 12, borderRadius: 8 }}><div style={{ background: 'var(--bg-muted)', border: '1px solid var(--border-mid)', borderRadius: 8, padding: '8px 12px' }}>Edit · Copy link</div></div>
+        </DoDont>
+      </BestPractice>
       <H2>Scrim</H2>
       <P>Behind a modal, <code>--overlay-scrim</code> dims the page so the dialog stands out.</P>
       <div className="dx-scrim"><div className="dx-scrim__layer" /><span>Page content</span></div>

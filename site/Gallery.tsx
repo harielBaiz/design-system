@@ -3,7 +3,7 @@ import {
   Button, Input, Select, Checkbox, Radio, RadioGroup, Toggle, FieldGroup, Chip, Badge, Callout, InsightItem, OutcomeStat,
   ChatMessage, ChatComposer, Icon,
   Avatar, AvatarGroup, ChipGroup, Breadcrumbs, Scroller, MotionText, Skeleton, ProgressCircle, EmptyState,
-  Banner, Notice, useToast, Modal, Popover, Tooltip, Dropdown, EmojiPicker,
+  Banner, Notice, useToast, Modal, Popover, Tooltip, Dropdown, EmojiPicker, Drawer,
 } from '../src';
 
 export function Demo({ title, note, children, wide }: { title: string; note?: string; children: React.ReactNode; wide?: boolean }) {
@@ -204,6 +204,7 @@ export function Overlays() {
   const [open, setOpen] = useState(false);
   const [danger, setDanger] = useState(false);
   const [emojiOpen, setEmojiOpen] = useState(false);
+  const [sheet, setSheet] = useState(false);
   const [text, setText] = useState('Great work');
   const emojiBtn = useRef<HTMLButtonElement>(null);
   const [last, setLast] = useState('nothing yet');
@@ -237,6 +238,15 @@ export function Overlays() {
               { id: 'delete', label: 'Delete', icon: <Icon name="trash" size={16} />, danger: true },
             ]} />
           <span className="site-note">Chose: {last}</span>
+        </div>
+      </Demo>
+      <Demo title="Drawer" note="A side sheet. Modal here, so the page is blocked. Escape or Close returns focus.">
+        <div className="gal-row">
+          <Button variant="secondary" onClick={() => setSheet(true)}>Open settings</Button>
+          <Drawer modal placement="right" open={sheet} onClose={() => setSheet(false)} title="Settings" description="Changes apply to this browser."
+            footer={<div className="gal-row" style={{ justifyContent: 'flex-end' }}><Button variant="secondary" onClick={() => setSheet(false)}>Cancel</Button><Button onClick={() => setSheet(false)}>Save</Button></div>}>
+            <p style={{ margin: 0, color: 'var(--text-2)' }}>A drawer holds content that belongs to the page behind it. Corner drawers leave the page usable, like the assistant in Patterns.</p>
+          </Drawer>
         </div>
       </Demo>
       <Demo title="Emoji picker" note="Inside a popover. Search, categories, arrow keys.">

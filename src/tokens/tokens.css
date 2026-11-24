@@ -55,6 +55,7 @@
 
   /* Surfaces */
   --surface-card:         var(--n-100);
+  --surface-raised:       var(--n-0);   /* floats above the page: lighter than --bg-subtle */
   --surface-card-inverse: var(--n-800);
   --surface-overlay:      rgba(255,255,255,0.95);
   --surface-feature:      var(--n-100);
@@ -117,6 +118,7 @@
   --bg-opacity: var(--n-950-opacity);
 
   --surface-card:         var(--n-800);
+  --surface-raised:       var(--n-800); /* lighter than the n-900 page base */
   --surface-card-inverse: var(--n-200);
   --surface-overlay:      rgba(10,10,10,0.95);
   --surface-feature:      var(--n-800);

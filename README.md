@@ -32,13 +32,15 @@ src/
 | Patterns | FormField, FieldGroup: the shared shell behind every form control |
 | Display | Avatar (AvatarGroup), Badge (label, count; types, outlined, subtle, icons, decorative), Chip (interactive, selected, closable, sizes, icon, avatar; ChipGroup), Skeleton, ProgressCircle, EmptyState, Scroller, MotionText |
 | Messaging | Banner (page), Notice (inline), Toast (ToastProvider, useToast) |
-| Overlays | Modal (native dialog), Popover, Tooltip, Dropdown (menu), EmojiPicker |
-| Navigation | Breadcrumbs |
+| Overlays | Modal (native dialog), Drawer (corner or edge, non-modal or modal), Popover, Tooltip, Dropdown (menu), EmojiPicker |
+| Navigation | Breadcrumbs, SectionIndex (inline or rail, scroll-spy) |
 | Labels | Badge, Chip, Code, SectionLabel |
 | Content | Callout, InsightItem (win / pain), OutcomeStat, HeroFacts, Testimonial, MediaBlock, CaseRow |
 | Layout | Nav, Footer, ContactSection, Tabs |
 | Chat | ChatMessage, ChatComposer |
 | Foundations | Icon (Lucide geometry, inline SVG) |
+
+Patterns are recipes made of components. They are documented in Storybook under **Patterns** and on the site under **Patterns**, and they are not exported from the library. The first one is **Ask assistant** (`src/patterns/AskAssistant.tsx`): a launcher, a non-modal Drawer, ChatMessage and ChatComposer.
 
 ## Landing page
 

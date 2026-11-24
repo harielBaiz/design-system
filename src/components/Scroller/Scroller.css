@@ -17,7 +17,7 @@
 .ds-scroller__btn {
   position: absolute; top: 50%; transform: translateY(-50%); display: inline-flex; align-items: center; justify-content: center;
   width: 32px; height: 32px; padding: 0; border: 1px solid var(--border-mid); border-radius: 50%;
-  background: var(--surface-card); color: var(--text); box-shadow: var(--shadow-md); cursor: pointer;
+  background: var(--surface-raised); color: var(--text); border: 1px solid var(--border-mid); cursor: pointer;
 }
 .ds-scroller__btn[hidden] { display: none; }
 .ds-scroller__btn:hover { background: var(--bg-muted); }

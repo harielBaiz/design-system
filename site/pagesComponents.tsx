@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { Button, Input, Chip, Banner, Notice, Toast, EmptyState, ChatMessage, ChipGroup } from '../src';
-import { Actions, Forms, Content, Display, Feedback, Overlays, Chat } from './Gallery';
+import { AskAssistant } from '../src/patterns/AskAssistant';
+import { Actions, Forms, Content, Display, Feedback, Overlays, Chat, Demo } from './Gallery';
 import { BestPractice, DoDont } from './DoDont';
 import { H2, P, ComponentList } from './ui';
 
@@ -93,6 +94,7 @@ export function ContentPage() {
         { name: 'OutcomeStat', text: 'A big number with a label.' },
         { name: 'HeroFacts', text: 'Short facts in columns.' },
         { name: 'Testimonial, MediaBlock, CaseRow', text: 'Portfolio content blocks.' },
+        { name: 'SectionIndex', text: 'Links to the sections of a long page, with the current one marked.' },
         { name: 'Nav, Footer, ContactSection, Tabs', text: 'Page structure.' },
       ]}
       demos={<Content />}
@@ -170,6 +172,7 @@ export function OverlaysPage() {
     <Group
       items={[
         { name: 'Modal', text: 'A native dialog that blocks the page until answered.' },
+        { name: 'Drawer', text: 'A panel from a corner or an edge. Non-modal or modal.' },
         { name: 'Popover', text: 'The anchored panel behind menus and pickers.' },
         { name: 'Tooltip', text: 'A short label on hover or focus.' },
         { name: 'Dropdown', text: 'A menu of actions with full keyboard support.' },
@@ -215,5 +218,42 @@ export function ChatPage() {
         </DoDont>
       </BestPractice>
     </Group>
+  );
+}
+
+export function AskAssistantPage() {
+  return (
+    <>
+      <P>A pattern is a recipe: several components working together on one task. This one is the assistant on the portfolio. It is not a component, because the container (Drawer) and the content (chat) are useful on their own.</P>
+      <H2>Parts</H2>
+      <ComponentList
+        items={[
+          { name: 'Button', text: 'The launcher. Says whether the chat is open.' },
+          { name: 'Drawer', text: 'A non-modal window docked bottom-right. Keeps the conversation while closed.' },
+          { name: 'ChatMessage', text: 'One turn, with pending and error states.' },
+          { name: 'ChatComposer', text: 'The input, with suggested prompts until the first message.' },
+        ]}
+      />
+      <H2>Live example</H2>
+      <P>Open it, try a suggestion, then type “fail” to see the error state. The page behind stays usable.</P>
+      <div className="gal-grid gal-grid--one"><Demo title="Ask about my work" note="The same recipe the portfolio uses." wide><AskAssistant /></Demo></div>
+      <H2>Best practices</H2>
+      <BestPractice title="Say what the assistant knows" text="A clear title and description set expectations, so people ask better questions.">
+        <DoDont kind="do" caption="It names its source: the case studies.">
+          <ChatMessage from="bot">Hi. Ask me about the work in this portfolio. Answers come from my case studies.</ChatMessage>
+        </DoDont>
+        <DoDont kind="dont" caption="An open invitation with no limits invites questions it cannot answer.">
+          <ChatMessage from="bot">Ask me anything!</ChatMessage>
+        </DoDont>
+      </BestPractice>
+      <BestPractice title="Keep the page usable" text="A chat is a side conversation. Do not block the page unless you must.">
+        <DoDont kind="do" caption="A non-modal drawer: people keep reading while they ask.">
+          <Button variant="secondary" disabled>Corner drawer · non-modal</Button>
+        </DoDont>
+        <DoDont kind="dont" caption="A modal dialog for chat takes over the whole page.">
+          <Button variant="secondary" disabled>Modal dialog</Button>
+        </DoDont>
+      </BestPractice>
+    </>
   );
 }
